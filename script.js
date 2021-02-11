@@ -59,6 +59,7 @@ function init() {
 document.querySelector("#reset").addEventListener("click", () => {
 	grid.innerHTML = "";
 	init();
+	initMenu();
 });
 
 init();
