@@ -2,20 +2,45 @@
 <html>
 	<head>
 		<style>
-
-		.grid-element {
-			background-color: rgba(255, 255, 255, 0.8);
-			border: 1px solid rgba(0, 0, 0, 0.8);
-			padding: 20px;
-			font-size: 30px;
-			text-align: center;
-		}
+			
+			.grid-element {
+				border: 1px solid rgba(0,0,0,0.8);
+				z-index: 0;
+				padding: 20px;
+			}
+			
+			#main-menu {
+				border: 1px solid rgba(0,0,0,0.8);
+				position: absolute;
+				top: 8;
+				left: 8;
+				width: 400;
+				height: 400;
+				z-index: 1;
+				background-color: cyan;
+				
+			}
+			
+			#title {
+				position: absolute;
+				top: 209;
+				left: 162;
+				font-size: 20px;
+			}
+			
+			#start-button {
+				position: absolute;
+				top: 215;
+				left: 175;
+			}
+			
 		</style>
 	</head>
 	<body>
 		<button id = "reset" style = "position: absolute; top: 0; left: 500;">Reset</button>
 		<span id = "check" style = "position: absolute; top: 0; left: 680;"></span>
 		<script src = "script.js"></script>
+		<script src = "main.js"></script>
 	</body>
 	
 </html>

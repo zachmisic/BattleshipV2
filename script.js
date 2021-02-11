@@ -1,8 +1,6 @@
 let grid = document.querySelector("body").appendChild(document.createElement("table"));
-let gridElement = "";
 let row = "";
 let elem = "";
-let temp = "";
 let start = true; // determines if the game has started or not
 
 /*
@@ -61,6 +59,7 @@ function init() {
 document.querySelector("#reset").addEventListener("click", () => {
 	grid.innerHTML = "";
 	init();
+	initMenu();
 });
 
 init();
