@@ -5,4 +5,5 @@ https://css-tricks.com/snippets/css/complete-guide-grid/
 -	Used for grid creation
 https://www.w3schools.com/jsref/event_onmouseover.asp
 -	Used for hover effect
-
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode
+-       Used for String.fromCharCode() method for grid labeling

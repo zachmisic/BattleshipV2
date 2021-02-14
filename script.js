@@ -1,9 +1,10 @@
-let grid = document.querySelector("body").appendChild(document.createElement("table"));
-let row = "";
-let elem = "";
+let grid = document.querySelector("body").appendChild(document.createElement("table")); // the table used for the grid
+grid.id = "grid";
+let row = ""; // <tr> html element for table rows
+let elem = ""; // grid cell
 let start = true; // determines if the game has started or not
-let mainMenu = "";
-let head = "";
+let mainMenu = ""; // varaible that represents the canvas for the menu background
+let head = ""; // is used to initialize new elements in buildShip(n) before they are appended to the body
 
 /*
 	Takes: n => number of the largest ship
@@ -41,8 +42,22 @@ function parseID(num) {
 	added to each column elements, that will detect 
 */
 function init() {
+	let ident = document.createElement('div');
+	ident.id = "identifiers";
+	document.querySelector("body").appendChild(ident);
 	for(let i=0;i<10;i++)
-	{
+	{	
+		// creates identifiers for the rows
+		ident = document.createElement('div');
+		ident.style = "position: absolute; top: 0px; left: " + ((44*i)+39) + "px; font-size: 20px; text-alight: center; padding: 10px; width: 30px; height: 30px;";
+		ident.innerText = i
+		document.querySelector("#identifiers").appendChild(ident);
+		// creates identifiers for the columns
+		ident = document.createElement('div');
+		ident.style = "position: absolute; top: " + ((44*i)+32) + "px; left: 0px; font-size: 20px; text-alight: center; padding: 10px; width: 30px; height: 30 px;";
+		ident.innerText = String.fromCharCode(65+i);
+		document.querySelector("#identifiers").appendChild(ident);
+		// creates the row element for the table
 		row = grid.appendChild(document.createElement("tr"));
 		for(let j=0;j<10;j++)
 		{
