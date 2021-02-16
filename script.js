@@ -188,7 +188,7 @@ function selMenu() {
 		you have to save the number i for each button so the event handler can select the specific id with the querySelector. 
 		if you don't assign a unique id, the eventListner only works for the last element created.
 	*/
-	for(let i=0;i<6;i++)
+	for(let i=0;i<10 ;i++)
 	{
 		startBtn = document.querySelector('#main-menu').appendChild(document.createElement('div'));
 		startBtn.id = "btn" + i;
@@ -213,74 +213,13 @@ initMenu();
 
 
 
-function setdown(length , col, row, vert) {
-	
-	if (length == 1) {
-		
-		if (ship[row][col] == '-') {
-			ship[row][col] = 'S';
-		}
-	
-
-	}
-	else {
-		let checkifempty = 0;
-		
-		if (vert == 'V') {
-		
-			for (let i = 0; i < length; i++)
-			{
-				if (ship[row + i][col] != '-') {
-					checkifempty += 1;
-
-				}
-			}
-
-			if (checkifempty == 0) {
-				for (let i = 0; i < length; i++) {
-					ship[row + i][col] = 'S';
-				}
-			}
-		
-		}
-		else {
-			for (let i = 0; i < length; i++)
-			{
-				if (ship[row][col + i] != '-') {
-					checkifempty += 1;
-
-				}
-			}
-
-			if (checkifempty == 0) {
-				for (let i = 0; i < length; i++)
-				{
-					ship[row][col + i] = 'S';
-				}
-			}
-		}
-	}};
-function fire(other,row,col) {
-	
-	let hit = false;
-	
-	if (other.incoming(col, row)) {
-		
-		hm[row][col] = 'X';
-		hit = true;
-		hits += 1;
-	}
-	else {
-		hm[row][col] = 'o';
-		hit = false;
-	}
-	
-	return(hit);
-
-};
-function incoming(col,row) {
-
-
+let player = function () {
+	this.hm = new Array(11);
+	this.ship = new Array(11);
+	this.shipcount = 0;
+	this.hitstowin = 0;
+	this.hits = 0;
+	this.incoming = function (col, row) {
 		if (ship[row][col] == 'S') {
 			ship[row][col] = 'X';
 			return (true);
@@ -288,60 +227,113 @@ function incoming(col,row) {
 		else {
 			ship[row][col] = 'o';
 			return (false);
-	}
-};
-function setup(ships) {
-	for (let i=0;i<11;i++)
-	{
-		hm[i]=new Array(11);
-		ship[i]=new Array(11);
-	}
-
-
-	hm[0][0] = ' ';
-	ship[0][0] = ' ';
-	ship[0][1] = 'A';
-	ship[0][2] = 'B';
-	ship[0][3] = 'C';
-	ship[0][4] = 'D';
-	ship[0][5] = 'E';
-	ship[0][6] = 'F';
-	ship[0][7] = 'G';
-	ship[0][8] = 'H';
-	ship[0][9] = 'I';
-	ship[0][10] = 'J';
-	hm[0][1] = 'A';
-	hm[0][2] = 'B';
-	hm[0][3] = 'C';
-	hm[0][4] = 'D';
-	hm[0][5] = 'E';
-	hm[0][6] = 'F';
-	hm[0][7] = 'G';
-	hm[0][8] = 'H';
-	hm[0][9] = 'I';
-	hm[0][10] = 'J';
-
-	for (let i = 1; i < 10; i++)
-	{
-		hm[i][0] = i;
-		ship[i][0] = i;
-	}
-	for (let i = 1; i < 11; i++)
-	{
-		for (let j = 1; j < 11; j++)
-		{
-			ship[i][j] = '-';
-			hm[i][j] = '-';
 		}
-	}
+	};
+	this.gameover= function(){
+		return (hits == hitstowin);
+	};
+	this.setup = function (ships) {
+		for (let i = 0; i < 11; i++) {
+			hm[i] = new Array(11);
+			ship[i] = new Array(11);
+        }
+		hm[0][0] = ' ';
+		ship[0][0] = ' ';
+		ship[0][1] = 'A';
+		ship[0][2] = 'B';
+		ship[0][3] = 'C';
+		ship[0][4] = 'D';
+		ship[0][5] = 'E';
+		ship[0][6] = 'F';
+		ship[0][7] = 'G';
+		ship[0][8] = 'H';
+		ship[0][9] = 'I';
+		ship[0][10] = 'J';
+		hm[0][1] = 'A';
+		hm[0][2] = 'B';
+		hm[0][3] = 'C';
+		hm[0][4] = 'D';
+		hm[0][5] = 'E';
+		hm[0][6] = 'F';
+		hm[0][7] = 'G';
+		hm[0][8] = 'H';
+		hm[0][9] = 'I';
+		hm[0][10] = 'J';
 
-	for (let i = 1; i <= shipcount; i++)
-	{
-		hitstowin += i;
-	}
-}
-function gameover() {
-	return (hits == hitstowin);
+		for (let i = 1; i < 10; i++) {
+			hm[i][0] = i;
+			ship[i][0] = i;
+		}
+		for (let i = 1; i < 11; i++) {
+			for (let j = 1; j < 11; j++) {
+				ship[i][j] = '-';
+				hm[i][j] = '-';
+			}
+		}
+
+		for (let i = 1; i <= shipcount; i++) {
+			hitstowin += i;
+		}
+	};
+	this.fire=function(other, row, col){
+		let hit = false;
+
+		if (other.incoming(col, row)) {
+
+			hm[row][col] = 'X';
+			hit = true;
+			hits += 1;
+		}
+		else {
+			hm[row][col] = 'o';
+			hit = false;
+		}
+
+		return (hit);
+	};
+	this.setdown=function(length, col, row, vert){
+		if (length == 1) {
+
+			if (ship[row][col] == '-') {
+				ship[row][col] = 'S';
+			}
+
+
+		}
+		else {
+			let checkifempty = 0;
+
+			if (vert == 'V') {
+
+				for (let i = 0; i < length; i++) {
+					if (ship[row + i][col] != '-') {
+						checkifempty += 1;
+
+					}
+				}
+
+				if (checkifempty == 0) {
+					for (let i = 0; i < length; i++) {
+						ship[row + i][col] = 'S';
+					}
+				}
+
+			}
+			else {
+				for (let i = 0; i < length; i++) {
+					if (ship[row][col + i] != '-') {
+						checkifempty += 1;
+
+					}
+				}
+
+				if (checkifempty == 0) {
+					for (let i = 0; i < length; i++) {
+						ship[row][col + i] = 'S';
+					}
+				}
+			}
+		}
+	};
 }
 
-let player = { hm: new Array(11), ship: new Array(11), shipcount: 0, hitstowin: 0, hits: 0 };
