@@ -225,7 +225,6 @@ let player = function () {
 		if (ship[row][col] == 'S') {
 			ship[row][col] = 'X';
 			return (true);
->>>>>>> d420a6898be9e40f6e5ee7f9878e4f163673dbe1
 		}
 		else {
 			ship[row][col] = 'o';
@@ -340,8 +339,5 @@ let player = function () {
 	};
 }
 
-<<<<<<< HEAD
 let player = { hm: new Array(11), ship: new Array(11), shipcount: 0, hitstowin: 0, hits: 0 };
->>>>>>> cea10a1508657770e94c1942661bd63fce24418a
-=======
->>>>>>> d420a6898be9e40f6e5ee7f9878e4f163673dbe1
+
