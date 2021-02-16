@@ -1,5 +1,7 @@
 let grid = document.querySelector("body").appendChild(document.createElement("table")); // the table used for the grid
 grid.id = "grid";
+let miniMap = document.querySelector('body').appendChild(document.createElement('table')); // the table used for the player's ship view
+miniMap.id = "mini-map";
 let row = ""; // <tr> html element for table rows
 let elem = ""; // grid cell
 let start = true; // determines if the game has started or not
@@ -74,6 +76,41 @@ function init() {
 				/* place player current ship */
 				}
 			}));
+			row.appendChild(elem);
+		}
+	}
+}
+
+/*
+	Function: initMiniMap()
+	Takes: NONE
+	Returns: NONE
+	
+	function draws a mini version of the grid to the right of the main grid. this grid is for representing the active player's ships.
+*/
+function initMiniMap() {
+	let ident = document.createElement('div');
+	ident.id = "identifiers-mini";
+	document.querySelector("body").appendChild(ident);
+	for(let i=0;i<10;i++)
+	{	
+		// creates identifiers for the rows
+		ident = document.createElement('div');
+		ident.style = "position: absolute; top: 70px; left: " + ((13*i)+973) + "px; font-size: 15px; text-alight: center; padding: 10px; width: 30px; height: 30px;";
+		ident.innerText = i+1
+		document.querySelector("#identifiers").appendChild(ident);
+		// creates identifiers for the columns
+		ident = document.createElement('div');
+		ident.style = "position: absolute; top: " + ((14*i)+88) + "px; left: 955px; font-size: 13px; text-alight: center; padding: 10px; width: 30px; height: 30 px;";
+		ident.innerText = String.fromCharCode(65+i);
+		document.querySelector("#identifiers").appendChild(ident);
+		// creates the row element for the table
+		row = miniMap.appendChild(document.createElement("tr"));
+		for(let j=0;j<10;j++)
+		{
+			elem = document.createElement("td");
+			elem.className = "mini-map-elem";
+			elem.id = "" + i + j;
 			row.appendChild(elem);
 		}
 	}
