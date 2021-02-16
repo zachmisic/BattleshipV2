@@ -51,12 +51,12 @@ function init() {
 	{	
 		// creates identifiers for the rows
 		ident = document.createElement('div');
-		ident.style = "position: absolute; top: 0px; left: " + ((44*i)+39) + "px; font-size: 20px; text-alight: center; padding: 10px; width: 30px; height: 30px;";
-		ident.innerText = i
+		ident.style = "position: absolute; top: 60px; left: " + ((44*i)+505) + "px; font-size: 20px; text-alight: center; padding: 10px; width: 30px; height: 30px;";
+		ident.innerText = i+1
 		document.querySelector("#identifiers").appendChild(ident);
 		// creates identifiers for the columns
 		ident = document.createElement('div');
-		ident.style = "position: absolute; top: " + ((44*i)+32) + "px; left: 0px; font-size: 20px; text-alight: center; padding: 10px; width: 30px; height: 30 px;";
+		ident.style = "position: absolute; top: " + ((44*i)+105) + "px; left: 460px; font-size: 20px; text-alight: center; padding: 10px; width: 30px; height: 30 px;";
 		ident.innerText = String.fromCharCode(65+i);
 		document.querySelector("#identifiers").appendChild(ident);
 		// creates the row element for the table
@@ -81,13 +81,7 @@ function init() {
 	}
 }
 
-/*
-	Function: initMiniMap()
-	Takes: NONE
-	Returns: NONE
-	
-	function draws a mini version of the grid to the right of the main grid. this grid is for representing the active player's ships.
-*/
+
 function initMiniMap() {
 	let ident = document.createElement('div');
 	ident.id = "identifiers-mini";
@@ -98,12 +92,12 @@ function initMiniMap() {
 		ident = document.createElement('div');
 		ident.style = "position: absolute; top: 70px; left: " + ((13*i)+973) + "px; font-size: 15px; text-alight: center; padding: 10px; width: 30px; height: 30px;";
 		ident.innerText = i+1
-		document.querySelector("#identifiers-mini").appendChild(ident);
+		document.querySelector("#identifiers").appendChild(ident);
 		// creates identifiers for the columns
 		ident = document.createElement('div');
 		ident.style = "position: absolute; top: " + ((14*i)+88) + "px; left: 955px; font-size: 13px; text-alight: center; padding: 10px; width: 30px; height: 30 px;";
 		ident.innerText = String.fromCharCode(65+i);
-		document.querySelector("#identifiers-mini").appendChild(ident);
+		document.querySelector("#identifiers").appendChild(ident);
 		// creates the row element for the table
 		row = miniMap.appendChild(document.createElement("tr"));
 		for(let j=0;j<10;j++)
@@ -111,11 +105,15 @@ function initMiniMap() {
 			elem = document.createElement("td");
 			elem.className = "mini-map-elem";
 			elem.id = "" + i + j;
+			//elem.addEventListener("click", (() => {	
+			//document.getElementById("check").innerText = i + " " + j;
+			//document.getElementById(i + "" + j).style = "background-color: red;"; /*hitCheck*/
+			//console.log(i + "" + j);
 			row.appendChild(elem);
 		}
 	}
 }
-
+	
 /*
 	Function: reset event listener
 	Takes: NONE
@@ -132,8 +130,8 @@ document.querySelector("#reset").addEventListener("click", () => {
 });
 
 /*
-	Takes: None
-	Returns: None
+	Takes: NONE
+	Returns: NONE
 
 	function initializes the menu screen. It creates a new menu elements and appends them onto the body/background.
 	It also assignes them specific IDs so they will get styled by the css in index.html. After creation,
@@ -170,6 +168,13 @@ function initMenu() {
 	
 }
 
+/*
+	Takes: NONE
+	Returns: NONE
+	
+	function initilaizes the selection menu and allows user to choose number of ships to play with. each selection
+	element has en event listener that listens for a click, and then calls a set ship # function.
+*/
 function selMenu() {
 	let title = document.querySelector('#main-menu').appendChild(document.createElement('div'));
 	let startBtn = "";
@@ -191,10 +196,11 @@ function selMenu() {
 		startBtn.innerText = "" + (i+1);
 		startBtn.addEventListener("mouseover", () => { document.querySelector(("#btn" + i)).style.backgroundColor = "red"; }); 
 		startBtn.addEventListener("mouseout", () => { document.querySelector(("#btn" + i)).style.backgroundColor = ""; });
-		startBtn.addEventListener("click", () => { document.querySelector(("#btn" + i)).style.backgroundColor = "green"; /* setNumShips(i); */ mainMenu.innerHTML = ""; mainMenu.remove() });
+		startBtn.addEventListener("click", () => { document.querySelector(("#btn" + i)).style.backgroundColor = "green"; /* setNumShips(i); */ mainMenu.innerHTML = ""; mainMenu.remove(); });
 		mainMenu.appendChild(startBtn);
 	}
 }
 
 init();
+initMiniMap();
 initMenu();
