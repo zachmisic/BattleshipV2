@@ -291,6 +291,13 @@ function incoming(col,row) {
 	}
 };
 function setup(ships) {
+	for (let i=0;i<11;i++)
+	{
+		hm[i]=new Array(11);
+		ship[i]=new Array(11);
+	}
+
+
 	hm[0][0] = ' ';
 	ship[0][0] = ' ';
 	ship[0][1] = 'A';
