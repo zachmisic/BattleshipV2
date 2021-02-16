@@ -98,12 +98,12 @@ function initMiniMap() {
 		ident = document.createElement('div');
 		ident.style = "position: absolute; top: 70px; left: " + ((13*i)+973) + "px; font-size: 15px; text-alight: center; padding: 10px; width: 30px; height: 30px;";
 		ident.innerText = i+1
-		document.querySelector("#identifiers").appendChild(ident);
+		document.querySelector("#identifiers-mini").appendChild(ident);
 		// creates identifiers for the columns
 		ident = document.createElement('div');
 		ident.style = "position: absolute; top: " + ((14*i)+88) + "px; left: 955px; font-size: 13px; text-alight: center; padding: 10px; width: 30px; height: 30 px;";
 		ident.innerText = String.fromCharCode(65+i);
-		document.querySelector("#identifiers").appendChild(ident);
+		document.querySelector("#identifiers-mini").appendChild(ident);
 		// creates the row element for the table
 		row = miniMap.appendChild(document.createElement("tr"));
 		for(let j=0;j<10;j++)
