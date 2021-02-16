@@ -338,6 +338,3 @@ let player = function () {
 		}
 	};
 }
-
-let player = { hm: new Array(11), ship: new Array(11), shipcount: 0, hitstowin: 0, hits: 0 };
-
