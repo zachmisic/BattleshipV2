@@ -220,16 +220,6 @@ function parseID(num) {
 	return [num[0],num[1]];
 }
 
-function setdown(length , col, row, vert) {
-	
-	if (length === 1) {
-		
-		if (ship[row][col] === '-') {
-			ship[row][col] = 'S';
-		}
-	}
-}
-
 let player = function () {
 	this.hm = new Array(11);
 	this.ship = new Array(11);
