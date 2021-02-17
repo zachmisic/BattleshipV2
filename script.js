@@ -1,9 +1,109 @@
+main_row = document.getElementById("main-row");
+
+window.onload = function() {
+	display.init();
+};
+
 let display = {
-	grid: document.querySelector("body").appendChild(document.createElement("table")), // the table used for the grid
-	miniMap: document.querySelector('body').appendChild(document.createElement('table')), // the table used for the player's ship view
+	red_big_grid: document.getElementById("redBigGrid"),
+	red_small_grid: document.getElementById("redSmallGrid"),
+	blue_big_grid: document.getElementById("blueBigGrid"),
+	blue_small_grid: document.getElementById("blueSmallGrid"),
+	start_menu: document.getElementById("start-menu"),
+	reset_btn: document.getElementById("reset"),
+	start_btn: document.getElementById("start"),
+
 	gameStart: true, // determines if the game has started or not
 	mainMenu: "", // varaible that represents the canvas for the menu background
-	/*	
+
+	init: function() {
+		this.reset();
+		this.setEventListeners();
+	},
+
+	setEventListeners: function() {
+		this.start_btn.addEventListener("click", () => {
+
+		});
+
+		this.reset_btn.addEventListener("click", () => {
+			this.reset();
+		})
+	},
+
+	hideResetBtn: function() {
+		this.reset_btn.style.display = "none";
+	},
+
+	showResetBtn: function() {
+		this.reset_btn.style.display = "block";
+	},
+
+	hideStartBtn: function() {
+		this.start_btn.style.display = "none";
+	},
+
+	showStartBtn: function() {
+		this.start_btn.style.display = "block";
+	},
+
+	hideStartMenu: function() {
+		this.start_menu.style.display = "none";
+	},
+
+	showStartMenu: function() {
+		this.start_menu.style.display = "block";
+	},
+
+	hideRedBigGrid: function() {
+		this.red_big_grid.style.display = "none";
+	},
+
+	showRedBigGrid: function() {
+		this.red_big_grid.style.display = "block";
+	},
+
+	showRedSmallGrid: function() {
+		this.red_small_grid.style.display = "block";
+	},
+
+	hideRedSmallGrid: function () {
+		this.red_small_grid.style.display = "none";
+	},
+
+	hideBlueBigGrid: function() {
+		this.blue_big_grid.style.display = "none";
+	},
+
+	showBlueBigGrid: function() {
+		this.blue_big_grid.style.display = "block";
+	},
+
+	hideBlueSmallGrid: function() {
+		this.blue_small_grid.style.display = "none";
+	},
+
+	showBlueSmallGrid: function() {
+		this.blue_small_grid.style.display = "block";
+	},
+
+	hideAll: function() {
+		this.hideStartMenu();
+		this.hideBlueBigGrid();
+		this.hideRedBigGrid();
+		this.hideBlueSmallGrid();
+		this.hideRedSmallGrid();
+		this.hideStartBtn();
+		this.hideResetBtn();
+	},
+
+	reset: function() {
+		this.hideAll();
+		this.showStartMenu();
+		this.showStartBtn();
+	},
+
+	/*
 		Function: init
 		Takes: NONE
 		Returns: a 10x10 table HTML element
@@ -13,7 +113,6 @@ let display = {
 		added to each column elements, that will detect 
 	*/
 	drawGrid: function() {
-		display.grid.id = "grid";
 		let ident = document.createElement('div');
 		let row = ""; // <tr> html element for table rows
 		let elem = ""; // grid cell
@@ -174,11 +273,11 @@ let display = {
 			document.querySelector('body').appendChild(head);
 		}
 	}
-}
+};
 
-display.drawGrid();
-display.drawMainMenu();
-display.drawMiniMap();
+// display.drawGrid();
+// display.drawMainMenu();
+// display.drawMiniMap();
 
 /*
 	Takes: id(string) from selected unit
@@ -190,26 +289,11 @@ function parseID(num) {
 	return [num[0],num[1]];
 }
 
-/*
-	Function: reset event listener
-	Takes: NONE
-	Returns: NONE
-	
-	the EventListener on the button id="reset" waits for a click on the button, and then runs a handler
-	function that resets the inner contents of the <table></table> to and empty string(""). It then calls
-	the init() function to repopulate the grid
-*/
-document.querySelector("#reset").addEventListener("click", () => {
-	grid.innerHTML = "";
-	init();
-	initMenu();
-});
-
 function setdown(length , col, row, vert) {
 	
-	if (length == 1) {
+	if (length === 1) {
 		
-		if (ship[row][col] == '-') {
+		if (ship[row][col] === '-') {
 			ship[row][col] = 'S';
 		}
 	}
@@ -222,7 +306,7 @@ let player = function () {
 	this.hitstowin = 0;
 	this.hits = 0;
 	this.incoming = function (col, row) {
-		if (ship[row][col] == 'S') {
+		if (ship[row][col] === 'S') {
 			ship[row][col] = 'X';
 			return (true);
 		}
@@ -232,7 +316,7 @@ let player = function () {
 		}
 	};
 	this.gameover= function(){
-		return (hits == hitstowin);
+		return (hits === hitstowin);
 	};
 	this.setup = function (ships) {
 		for (let i = 0; i < 11; i++) {
@@ -294,9 +378,9 @@ let player = function () {
 		return (hit);
 	};
 	this.setdown=function(length, col, row, vert){
-		if (length == 1) {
+		if (length === 1) {
 
-			if (ship[row][col] == '-') {
+			if (ship[row][col] === '-') {
 				ship[row][col] = 'S';
 			}
 
@@ -305,16 +389,16 @@ let player = function () {
 		else {
 			let checkifempty = 0;
 
-			if (vert == 'V') {
+			if (vert === 'V') {
 
 				for (let i = 0; i < length; i++) {
-					if (ship[row + i][col] != '-') {
+					if (ship[row + i][col] !== '-') {
 						checkifempty += 1;
 
 					}
 				}
 
-				if (checkifempty == 0) {
+				if (checkifempty === 0) {
 					for (let i = 0; i < length; i++) {
 						ship[row + i][col] = 'S';
 					}
@@ -323,13 +407,13 @@ let player = function () {
 			}
 			else {
 				for (let i = 0; i < length; i++) {
-					if (ship[row][col + i] != '-') {
+					if (ship[row][col + i] !== '-') {
 						checkifempty += 1;
 
 					}
 				}
 
-				if (checkifempty == 0) {
+				if (checkifempty === 0) {
 					for (let i = 0; i < length; i++) {
 						ship[row][col + i] = 'S';
 					}
