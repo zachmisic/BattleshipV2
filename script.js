@@ -205,15 +205,7 @@ document.querySelector("#reset").addEventListener("click", () => {
 	initMenu();
 });
 
-function setdown(length , col, row, vert) {
-	
-	if (length == 1) {
-		
-		if (ship[row][col] == '-') {
-			ship[row][col] = 'S';
-		}
-	}
-}
+
 
 let player = function () {
 	this.hm = new Array(11);
