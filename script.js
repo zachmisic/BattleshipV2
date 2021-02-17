@@ -29,6 +29,9 @@ let display = {
 		this.initGrid(this.red_small_grid);
 	},
 
+	/*
+	Sets event listeners for the elements existing when the page is loaded, e.i. not the grids.
+	 */
 	setEventListeners: function() {
 		this.start_btn.addEventListener("click", () => {
 			// TODO: make sure a box is selected.
@@ -69,6 +72,21 @@ let display = {
 				}
 			});
 		}
+	},
+
+	/*
+	Sets event listeners on a given box.
+	 */
+	setBoxEventListeners: function(grid_box_ref) {
+		grid_box_ref.addEventListener("mouseover", () => {
+			grid_box_ref.classList.add("hover");
+		});
+
+		grid_box_ref.addEventListener("mouseout", () => {
+			grid_box_ref.classList.remove("hover");
+		});
+
+		return grid_box_ref;
 	},
 
 	hideResetBtn: function() {
@@ -163,6 +181,8 @@ let display = {
 			for(let j=0; j < 10; j++) {
 				let box = document.createElement('td');
 				box.classList.add("grid-box");
+				box = this.setBoxEventListeners(box);
+
 				row.appendChild(box);
 			}
 			table_ref.appendChild(row);
