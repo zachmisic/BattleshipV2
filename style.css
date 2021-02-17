@@ -73,3 +73,29 @@ button {
 #ship-row {
     flex-flow: row wrap-reverse;
 }
+
+table {
+
+}
+
+table td {
+    border: thin solid black;
+}
+
+.big-grid {
+
+}
+
+.small-grid {
+    transform: scale(0.2);
+}
+
+.grid-box {
+    height: 20px;
+    width: 20px;
+    padding: 5px;
+}
+
+.small-grid {
+
+}
