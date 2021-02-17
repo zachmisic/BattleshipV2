@@ -61,6 +61,15 @@ button {
     cursor: pointer;
 }
 
+.ship-sel.hover {
+    transform: scale(1.1);
+}
+
+.ship-sel.selected {
+    transform: scale(1.1);
+    background-color: lightsteelblue;
+}
+
 #ship-row {
     flex-flow: row wrap-reverse;
 }

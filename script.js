@@ -12,6 +12,7 @@ let display = {
 	start_menu: document.getElementById("start-menu"),
 	reset_btn: document.getElementById("reset"),
 	start_btn: document.getElementById("start"),
+	ship_selectors: document.getElementsByClassName("ship-sel"),
 
 	gameStart: true, // determines if the game has started or not
 	mainMenu: "", // varaible that represents the canvas for the menu background
@@ -23,12 +24,42 @@ let display = {
 
 	setEventListeners: function() {
 		this.start_btn.addEventListener("click", () => {
-
+			// TODO: make sure a box is selected.
+			this.hideStartBtn();
+			this.showResetBtn();
+			this.hideStartMenu();
+			this.showBlueBigGrid();
+			this.showBlueSmallGrid();
 		});
 
 		this.reset_btn.addEventListener("click", () => {
 			this.reset();
-		})
+		});
+
+		// Mouseover, mouseout, and selection for ship selection buttons.
+		for(let i=0; i < this.ship_selectors.length; i++) {
+			this.ship_selectors[i].addEventListener("mouseover", () => {
+				this.ship_selectors[i].classList.add("hover")
+			});
+			this.ship_selectors[i].addEventListener("mouseout", () => {
+				this.ship_selectors[i].classList.remove("hover")
+			});
+			this.ship_selectors[i].addEventListener("click", () => {
+				// First deselect if any other box was selected.
+				for(let j=0; j < this.ship_selectors.length; j++) {
+					if(j !== i) {
+						this.ship_selectors[j].classList.remove("selected");
+					}
+				}
+
+				// Now select or deselect depending on state.
+				if(this.ship_selectors[i].classList.contains("selected")) {
+					this.ship_selectors[i].classList.remove("selected")
+				} else {
+					this.ship_selectors[i].classList.add("selected")
+				}
+			});
+		}
 	},
 
 	hideResetBtn: function() {
