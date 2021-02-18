@@ -167,10 +167,15 @@ let display = {
 	 */
 	initGrid: function(table_ref) {
 		let headrow = document.createElement('tr');
+		let box = document.createElement("th"); // adds an extra th element to offset the column labels
+		box.classList.add("grid-box");
+		box.classList.add("head");
+		headrow.appendChild(box);
 		for(let i=0; i < 10; i++) {
-			let box = document.createElement("th");
+			box = document.createElement("th");
 			box.classList.add("grid-box");
 			box.classList.add("head");
+			box.innerText = String.fromCharCode(65+i); // labels the columns
 			headrow.appendChild(box);
 		}
 		table_ref.appendChild(headrow);
@@ -178,6 +183,12 @@ let display = {
 		for(let i=0; i < 10; i++) {
 			let row = document.createElement('tr');
 			row.classList.add("grid-row");
+			let tempBox = document.createElement('td'); // creates an extra td element on the front of each row to hold the row label
+			tempBox.classList.add("grid-box");
+			tempBox.classList.add("head");
+			tempBox.style.borderStyle = "none";
+			tempBox.innerText = i + "";
+			row.appendChild(tempBox);
 			for(let j=0; j < 10; j++) {
 				let box = document.createElement('td');
 				box.classList.add("grid-box");
