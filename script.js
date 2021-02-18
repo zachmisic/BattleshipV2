@@ -354,3 +354,36 @@ let player = function () {
 		}
 	};
 }
+
+let play = function(){
+	this.gamestart=function(){
+		var p1;
+		var p2;
+		player ();
+		alert("Let the battle commence");
+		midgame();
+	}
+
+	this.midgame=function(){
+		do{
+			p1.fire(p2, row, col);
+			if (one.gameover() == false){
+				p2.fire(p1, row, col);
+				if (p2.gameover() == true){
+					return p2.gameover()==true;
+				}
+			}
+
+		}while (!(p1.gameover()) && !(p2.gameover()));
+		endgame();
+	}
+
+	this.endgame=function(){
+		alert("GAME OVER");
+		if (p1.gameover() == true){
+			alert("Player 1 WINS!!!!!!!!");
+		}else{
+			alert("Player 2 WINS!!!!!!!!");
+		}
+	}
+}
