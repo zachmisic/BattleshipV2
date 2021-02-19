@@ -34,18 +34,24 @@ let display = {
 	 */
 	setEventListeners: function() {
 		this.start_btn.addEventListener("click", () => {
-			// TODO: make sure a box is selected.
-			this.hideStartBtn();
-			this.showResetBtn();
-			this.hideStartMenu();
-			this.showBlueBigGrid();
-			this.showBlueSmallGrid();
 			for(let i=0; i < this.ship_selectors.length; i++)
 			{
 				if(this.ship_selectors[i].classList.contains("selected"))
 					game.shipNum = i+1;
 			}
-
+			if(game.shipNum != 0)
+			{
+				this.hideStartBtn();
+				this.showResetBtn();
+				this.hideStartMenu();
+				this.showBlueBigGrid();
+				this.showBlueSmallGrid();
+			}
+			else
+			{
+				console.log("please select a ship"); //display this in a text box in display
+			}
+			
 
 		});
 
