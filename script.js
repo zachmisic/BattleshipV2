@@ -14,6 +14,7 @@ let display = {
 	reset_btn: document.getElementById("reset"),
 	start_btn: document.getElementById("start"),
 	ship_selectors: document.getElementsByClassName("ship-sel"),
+
 	gameStart: true, // determines if the game has started or not
 	mainMenu: "", // varaible that represents the canvas for the menu background
 
@@ -242,13 +243,13 @@ function parseID(num) {
 }
 
 let player = function () {
-	this.hm = new Array(11);
-	this.ship = new Array(11);
+	this.hm = new Array(10);
+	this.ship = new Array(10);
 	this.shipcount = 0;
 	this.hitstowin = 0;
 	this.hits = 0;
 	this.incoming = function (col, row) {
-		if (ship[row][col] === 'S') {
+		if (ship[row][col] == 'S') {
 			ship[row][col] = 'X';
 			return (true);
 		}
@@ -258,42 +259,21 @@ let player = function () {
 		}
 	};
 	this.gameover= function(){
-		return (hits === hitstowin);
+		return (hits == hitstowin);
 	};
 	this.setup = function (ships) {
-		for (let i = 0; i < 11; i++) {
-			hm[i] = new Array(11);
-			ship[i] = new Array(11);
+		for (let i = 0; i < 10; i++) {
+			hm[i] = new Array(10);
+			ship[i] = new Array(10);
         }
-		hm[0][0] = ' ';
-		ship[0][0] = ' ';
-		ship[0][1] = 'A';
-		ship[0][2] = 'B';
-		ship[0][3] = 'C';
-		ship[0][4] = 'D';
-		ship[0][5] = 'E';
-		ship[0][6] = 'F';
-		ship[0][7] = 'G';
-		ship[0][8] = 'H';
-		ship[0][9] = 'I';
-		ship[0][10] = 'J';
-		hm[0][1] = 'A';
-		hm[0][2] = 'B';
-		hm[0][3] = 'C';
-		hm[0][4] = 'D';
-		hm[0][5] = 'E';
-		hm[0][6] = 'F';
-		hm[0][7] = 'G';
-		hm[0][8] = 'H';
-		hm[0][9] = 'I';
-		hm[0][10] = 'J';
 
-		for (let i = 1; i < 10; i++) {
+
+		for (let i= 1; i < 10; i++) {
 			hm[i][0] = i;
 			ship[i][0] = i;
 		}
-		for (let i = 1; i < 11; i++) {
-			for (let j = 1; j < 11; j++) {
+		for (let i = 1; i < 10; i++) {
+			for (let j = 1; j < 10; j++) {
 				ship[i][j] = '-';
 				hm[i][j] = '-';
 			}
@@ -320,9 +300,9 @@ let player = function () {
 		return (hit);
 	};
 	this.setdown=function(length, col, row, vert){
-		if (length === 1) {
+		if (length == 1) {
 
-			if (ship[row][col] === '-') {
+			if (ship[row][col] == '-') {
 				ship[row][col] = 'S';
 			}
 
@@ -331,16 +311,16 @@ let player = function () {
 		else {
 			let checkifempty = 0;
 
-			if (vert === 'V') {
+			if (vert == 'V') {
 
 				for (let i = 0; i < length; i++) {
-					if (ship[row + i][col] !== '-') {
+					if (ship[row + i][col] != '-') {
 						checkifempty += 1;
 
 					}
 				}
 
-				if (checkifempty === 0) {
+				if (checkifempty == 0) {
 					for (let i = 0; i < length; i++) {
 						ship[row + i][col] = 'S';
 					}
@@ -349,13 +329,13 @@ let player = function () {
 			}
 			else {
 				for (let i = 0; i < length; i++) {
-					if (ship[row][col + i] !== '-') {
+					if (ship[row][col + i] != '-') {
 						checkifempty += 1;
 
 					}
 				}
 
-				if (checkifempty === 0) {
+				if (checkifempty == 0) {
 					for (let i = 0; i < length; i++) {
 						ship[row][col + i] = 'S';
 					}
@@ -370,13 +350,12 @@ let play = function(plr1,plr2,disp) {
 	this.p2 = plr2;
 	this.display = disp;
 	this.gameState = false;
-	this.placeShips = function(payload) {
-		if(p1.
+	this.placeShips = function(payload){};
 	this.gamestart=function(){
 		player ();
 		alert("Let the battle commence"); // show on display element
 		midgame();
-	}
+	};
 
 	this.midgame=function(){
 		do{
@@ -390,7 +369,7 @@ let play = function(plr1,plr2,disp) {
 
 		}while (!(p1.gameover()) && !(p2.gameover()));
 		endgame();
-	}
+	};
 
 	this.endgame=function(){
 		alert("GAME OVER");
