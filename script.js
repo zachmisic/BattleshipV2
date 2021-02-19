@@ -40,6 +40,11 @@ let display = {
 			this.hideStartMenu();
 			this.showBlueBigGrid();
 			this.showBlueSmallGrid();
+			for(let i=0; i < this.ship_selectors.length; i++)
+			{
+				if(this.ship_selectors[i].classList.contains("selected"))
+					game.shipNum = i+1;
+			}
 
 
 		});
@@ -66,9 +71,9 @@ let display = {
 
 				// Now select or deselect depending on state.
 				if(this.ship_selectors[i].classList.contains("selected")) {
-					this.ship_selectors[i].classList.remove("selected")
+					this.ship_selectors[i].classList.remove("selected");
 				} else {
-					this.ship_selectors[i].classList.add("selected")
+					this.ship_selectors[i].classList.add("selected");
 				}
 			});
 		}
@@ -387,3 +392,10 @@ let play = function(){
 		}
 	}
 }
+
+let game = {
+	shipNum: 0,
+	placeShips: function(p1,p2) {
+	}
+}
+	
