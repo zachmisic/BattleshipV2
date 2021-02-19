@@ -237,35 +237,14 @@ let player = function () {
 			hm[i] = new Array(11);
 			ship[i] = new Array(11);
         }
-		hm[0][0] = ' ';
-		ship[0][0] = ' ';
-		ship[0][1] = 'A';
-		ship[0][2] = 'B';
-		ship[0][3] = 'C';
-		ship[0][4] = 'D';
-		ship[0][5] = 'E';
-		ship[0][6] = 'F';
-		ship[0][7] = 'G';
-		ship[0][8] = 'H';
-		ship[0][9] = 'I';
-		ship[0][10] = 'J';
-		hm[0][1] = 'A';
-		hm[0][2] = 'B';
-		hm[0][3] = 'C';
-		hm[0][4] = 'D';
-		hm[0][5] = 'E';
-		hm[0][6] = 'F';
-		hm[0][7] = 'G';
-		hm[0][8] = 'H';
-		hm[0][9] = 'I';
-		hm[0][10] = 'J';
-
-		for (let i = 1; i < 10; i++) {
+		
+		
+		for (let i= 1; i < 10; i++) {
 			hm[i][0] = i;
 			ship[i][0] = i;
 		}
-		for (let i = 1; i < 11; i++) {
-			for (let j = 1; j < 11; j++) {
+		for (let i = 1; i < 10; i++) {
+			for (let j = 1; j < 10; j++) {
 				ship[i][j] = '-';
 				hm[i][j] = '-';
 			}
