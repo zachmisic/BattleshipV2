@@ -1,67 +1,54 @@
-<DOCTYPE! html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
-		<style>
-			
-			.grid-element {
-				border: 1px solid rgba(0,0,0,0.8);
-				z-index: 0;
-				padding: 20px;
-			}
-			
-			#grid {
-				position: absolute; 
-				top: 100;
-				left: 500;
-			}
-			
-			#mini-map {
-				position: absolute;
-				top: 100;
-				left: 980;
-			}
-			
-			.mini-map-elem {
-				border: 1px solid rgba(0,0,0,0.8);
-				z-index: 0;
-				padding: 5;
-			}
-			
-			#main-menu {
-				border: 1px solid rgba(0,0,0,0.8);
-				position: absolute;
-				top: 8;
-				left: 8;
-				width: 400;
-				height: 400;
-				z-index: 1;
-				background-color: cyan;
-				
-			}
-			
-			#title {
-				position: absolute;
-				top: 209;
-				left: 162;
-				font-size: 20px;
-			}
-			
-			#start-button {
-				position: absolute;
-				top: 215;
-				left: 175;
-			}
-			
-			#reset {
-				position: absolute; 
-				top: 550;
-				left: 500;
-			}
-			
-		</style>
+		<title>Battleship</title>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<button id = "reset">Reset</button>
+		<div id="info-row" class="row">
+			<h1>Battleship!</h1>
+			<button id="reset">Reset</button>
+			<button id="start">Start</button>
+		</div>
+
+		<div id="main-row" class="row">
+			<div id="start-menu" class="column">
+				<h1>Choose number of ships</h1>
+				<div id="ship-row" class="row">
+					<div id="one-ship">
+						<div class="ship-sel row">
+							<h1>1</h1>
+						</div>
+					</div>
+					<div id="two-ship">
+						<div class="ship-sel row">
+							<h1>2</h1>
+						</div>
+					</div>
+					<div id="three-ship">
+						<div class="ship-sel row">
+							<h1>3</h1>
+						</div>
+					</div>
+					<div id="four-ship">
+						<div class="ship-sel row">
+							<h1>4</h1>
+						</div>
+					</div>
+					<div id="five-ship">
+						<div class="ship-sel row">
+							<h1>5</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<table id="redBigGrid" class="big-grid"></table>
+			<table id="redSmallGrid" class="small-grid"></table>
+			<table id="blueBigGrid" class="big-grid"></table>
+			<table id="blueSmallGrid" class="small-grid"></table>
+		</div>
+
 		<span id = "check" style = "position: absolute; top: 0; left: 680;"></span>
 		<script src = "script.js"></script>
 	</body>
