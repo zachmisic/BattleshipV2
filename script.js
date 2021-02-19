@@ -214,8 +214,8 @@ initMenu();
 
 
 let player = function () {
-	this.hm = new Array(11);
-	this.ship = new Array(11);
+	this.hm = new Array(10);
+	this.ship = new Array(10);
 	this.shipcount = 0;
 	this.hitstowin = 0;
 	this.hits = 0;
@@ -233,9 +233,9 @@ let player = function () {
 		return (hits == hitstowin);
 	};
 	this.setup = function (ships) {
-		for (let i = 0; i < 11; i++) {
-			hm[i] = new Array(11);
-			ship[i] = new Array(11);
+		for (let i = 0; i < 10; i++) {
+			hm[i] = new Array(10);
+			ship[i] = new Array(10);
         }
 		
 		
