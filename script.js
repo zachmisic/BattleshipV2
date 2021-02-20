@@ -6,8 +6,9 @@ window.onload = function() {
 	display.init();
 	// TODO: initialize game object.
 };
+
 /**
- * 
+ * display the play grids of the game
  */
 let display = {
 	playGame: "",
@@ -24,18 +25,19 @@ let display = {
 	gameStart: true, // determines if the game has started or not
 	mainMenu: "", // varaible that represents the canvas for the menu background
 
+	/**
+	* initalize grid
+	*/
 	init: function() {
 		this.reset();
 		this.setEventListeners();
-
-		// Initialize grids.
 		this.initGrid(this.blue_big_grid);
 		this.initGrid(this.blue_small_grid);
 		this.initGrid(this.red_big_grid);
 		this.initGrid(this.red_small_grid);
 	},
 
-	/** 
+	/**
 	*Sets event listeners for the elements existing when the page is loaded, e.i. not the grids.
 	 */
 	setEventListeners: function() {
@@ -62,7 +64,7 @@ let display = {
 			{
 				console.log("please select a ship"); //display this in a text box in display
 			}
-			
+
 
 		});
 
@@ -94,7 +96,7 @@ let display = {
 				}
 			});
 		}
-		
+
 		this.flip_ship_btn.addEventListener("click", () => { // allows the user to orient their ships on the board
 			if(this.flip_ship_btn.innerText == "Turn Ship Horizontal")
 			{
@@ -109,9 +111,9 @@ let display = {
 		});
 	},
 
-	/** 
+	/**
 	*Sets event listeners on a given box.
-	*@param {type}
+	*@param {type} grid_box_ref
 	*/
 	setBoxEventListeners: function(grid_box_ref) {
 		grid_box_ref.addEventListener("mouseover", () => {
@@ -121,7 +123,7 @@ let display = {
 		grid_box_ref.addEventListener("mouseout", () => {
 			grid_box_ref.classList.remove("hover");
 		});
-		
+
 		grid_box_ref.addEventListener("click", () => {
 			if(this.playGame.shipsPlaced) // checks if all the ships are placed
 			{
@@ -141,71 +143,122 @@ let display = {
 
 		return grid_box_ref;
 	},
-	
+
+	/**
+	 * hide flip button
+	 */
 	hideFlipBtn: function() {
 		this.flip_ship_btn.style.display = "none";
 	},
-	
+
+	/**
+	 * show flip botton
+	 */
 	showFlipBtn: function() {
 		this.flip_ship_btn.style.display = "block";
 	},
 
+	/**
+	 * hide rest button
+	 */
 	hideResetBtn: function() {
 		this.reset_btn.style.display = "none";
 	},
 
+	/**
+	 * show rest button
+	 */
 	showResetBtn: function() {
 		this.reset_btn.style.display = "block";
 	},
 
+	/**
+	 * hide start button
+	 */
 	hideStartBtn: function() {
 		this.start_btn.style.display = "none";
 	},
 
+	/**
+	 * show start button
+	 */
 	showStartBtn: function() {
 		this.start_btn.style.display = "block";
 	},
 
+	/**
+	 * hide start menu
+	 */
 	hideStartMenu: function() {
 		this.start_menu.style.display = "none";
 	},
 
+	/**
+	 * show start menu
+	 */
 	showStartMenu: function() {
 		this.start_menu.style.display = "block";
 	},
 
+		/**
+		 * hide red big grid
+		 */
 	hideRedBigGrid: function() {
 		this.red_big_grid.style.display = "none";
 	},
 
+	/**
+	 * show red big grid
+	 */
 	showRedBigGrid: function() {
 		this.red_big_grid.style.display = "table";
 	},
 
+	/**
+	 * show red small grid
+	 */
 	showRedSmallGrid: function() {
 		this.red_small_grid.style.display = "table";
 	},
 
+	/**
+	 * show red small grid
+	 */
 	hideRedSmallGrid: function () {
 		this.red_small_grid.style.display = "none";
 	},
 
+	/**
+	 * hide blue big grid
+	 */
 	hideBlueBigGrid: function() {
 		this.blue_big_grid.style.display = "none";
 	},
 
+	/**
+	 * show blue big grid
+	 */
 	showBlueBigGrid: function() {
 		this.blue_big_grid.style.display = "table";
 	},
 
+	/**
+	 * hide blue small grid
+	 */
 	hideBlueSmallGrid: function() {
 		this.blue_small_grid.style.display = "none";
 	},
 
+	/**
+	 * show blue small grid
+	 */
 	showBlueSmallGrid: function() {
 		this.blue_small_grid.style.display = "table";
 	},
 
+	/**
+	 * hide all
+	 */
 	hideAll: function() {
 		this.hideStartMenu();
 		this.hideBlueBigGrid();
@@ -217,15 +270,19 @@ let display = {
 		this.hideFlipBtn();
 	},
 
+	/**
+	 * reset
+	 */
 	reset: function() {
 		this.hideAll();
 		this.showStartMenu();
 		this.showStartBtn();
 	},
 
-	/** 
-	*Initializes a grid given a node of a table element. Only called once per table, unless you want to reset it.
-	*/
+	/**
+	 * Initializes a grid given a node of a table element. Only called once per table, unless you want to reset it.
+	 * @param {type} table_ref
+	 */
 	initGrid: function(table_ref) {
 		let headrow = document.createElement('tr');
 		let box = document.createElement("th"); // adds an extra th element to offset the column labels
@@ -261,18 +318,21 @@ let display = {
 			table_ref.appendChild(row);
 		}
 	},
-	
+
+	 	/**
+	 	 * parseID
+		 * @param {number} num
+	 	 * @return {number} num1+num2
+		 */
 	parseID: function(num) {
 		console.log(num[1] + " " + num[2]);
 		return [parseInt(num[1]),parseInt(num[2])];
 	},
 
-	/*
-		Takes: n => number of the largest ship
-		Returns: NONE
-	
-		function takes in the number of the largest ship in the fleet, and creates a block representation of it. This is purely visual and provides no functionality.
-	*/
+	/**
+	 * function takes in the number of the largest ship in the fleet, and creates a block representation of it. This is purely visual and provides no functionality.
+	 * @param {number} n - number of the largest ship
+	 */
 	drawShip: function(n) {
 		let head = "";
 		for(let i=0;i<n;i++)
@@ -282,8 +342,13 @@ let display = {
 			document.querySelector('body').appendChild(head);
 		}
 	},
-	
-	drawBoard: function(table_ref,board) 
+
+	/**
+	 * draw board
+	 * @param {display} table_ref
+	 * @param {type} board
+	 */
+	drawBoard: function(table_ref,board)
 	{ //expand on this
 		for(let i=0;i<10;i++)
 		{
@@ -299,8 +364,9 @@ let display = {
 // display.drawGrid();
 // display.drawMainMenu();
 // display.drawMiniMap();
+
 /**
- * establish player object
+ * establish player class
  */
 let player = function () {
 	this.hm = [];
@@ -308,6 +374,13 @@ let player = function () {
 	this.shipcount = 0;
 	this.hitstowin = 0;
 	this.hits = 0;
+
+	/**
+	 * take user input and react
+	 * @param {number} col - columns
+	 * @param {number} row - rows
+	 * @param {boolen} - reture if hit, false if not
+	 */
 	this.incoming = function (col, row) {
 		if (this.ship[row][col] == 'S') {
 			this.ship[row][col] = 'X';
@@ -318,9 +391,17 @@ let player = function () {
 			return (false);
 		}
 	};
+
+	/**
+	 * gameover
+	 */
 	this.gameover= function(){
 		return (this.hits == this.hitstowin);
 	};
+
+	/**
+	 * setup game grid and ship counts
+	 */
 	this.setup = function() {
 		for (let i = 0; i < 10; i++) {
 			this.hm[i] = [];
@@ -338,6 +419,14 @@ let player = function () {
 			this.hitstowin += i;
 		}
 	};
+
+	/**
+	 * fire
+	 * @param {type} other
+	 * @param {number} row -rows
+	 * @param {number} col - columns
+	 * @return {boolean} hit
+	 */
 	this.fire=function(other, row, col){
 		let hit = false;
 
@@ -354,6 +443,15 @@ let player = function () {
 
 		return (hit);
 	};
+
+	/**
+	 * setdown
+	 * @param {number} length
+	 * @param {number} col
+	 * @param {number} row
+	 * @param {type} vert
+	 * @return {boolean} check if empty
+	 */
 	this.setdown=function(length, col, row, vert){
 		let checkifempty = 0;
 		if (length == 1) {
@@ -369,7 +467,7 @@ let player = function () {
 
 		}
 		else {
-			
+
 			if (vert == 'V') {
 				for(let i = 0; i < length; i++) {
 					if(typeof this.ship[row + i] !== 'undefined')
@@ -384,7 +482,7 @@ let player = function () {
 						console.log("ship out of bounds");
 						checkifempty = 1;
 					}
-						
+
 				}
 				if(checkifempty == 0) {
 					for(let i = 0; i < length; i++) {
@@ -420,11 +518,12 @@ let player = function () {
 		return checkifempty;
 	};
 }
+
 /**
- * 
- * @param {player} plr1 player 1 object
- * @param {player} plr2 player 2 object
- * @param {display} disp class display
+ * play class that drives the game
+ * @param {player} plr1 -player 1 object
+ * @param {player} plr2 - player 2 object
+ * @param {display} disp -display class
  */
 let play = function(plr1,plr2,disp) {
 	this.p1 = plr1;
@@ -434,7 +533,12 @@ let play = function(plr1,plr2,disp) {
 	this.shipsPlaced = false;
 	this.shipNum = 0;
 	this.shipOrient = 'V';
-	// place ship is called when a grid-box is clicked and shipsPlaced is equal to false
+
+	/**
+	 * place ship is called when a grid-box is clicked and shipsPlaced is equal to false
+	 * @param {number} id
+	 * @return {boolean} if placed return true, else turn false
+		*/
 	this.placeShip = function(id) {
 		let placed = false;
 		let row = id[0];
@@ -480,12 +584,19 @@ let play = function(plr1,plr2,disp) {
 		}
 		return placed;
 	}
+
+	/**
+	 * start of game
+	 */
 	this.gamestart=function(){
 		player ();
 		alert("Let the battle commence"); // show on some display element
 		this.midgame();
 	};
 
+	/**
+   * middle of the game
+   */
 	this.midgame=function(){
 		do{
 			this.p1.fire(this.p2, row, col);
@@ -500,6 +611,9 @@ let play = function(plr1,plr2,disp) {
 		endgame();
 	};
 
+	/**
+	 * end of game
+	 */
 	this.endgame=function(){
 		alert("GAME OVER");
 		if (this.p1.gameover() == true){
@@ -520,5 +634,5 @@ display.playGame = new play(player1,player2,display);
 	{
 		displa
 		play.placeShip
-	
+
 */
