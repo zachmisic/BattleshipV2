@@ -421,10 +421,10 @@ let player = function () {
 	};
 }
 /**
- * play class that drives the game
- * @param {player} player 1 object
- * @param {player} player 2 object
- * @param {display} display class
+ * 
+ * @param {player} plr1 player 1 object
+ * @param {player} plr2 player 2 object
+ * @param {display} disp class display
  */
 let play = function(plr1,plr2,disp) {
 	this.p1 = plr1;
