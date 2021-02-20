@@ -1,9 +1,15 @@
-Battleship sites
+Battleship Sites：
 
 https://www.w3schools.com/css/css_grid.asp
 https://css-tricks.com/snippets/css/complete-guide-grid/
--	Used for grid creation
+  -	Used for grid creation
 https://www.w3schools.com/jsref/event_onmouseover.asp
--	Used for hover effect
+  -	Used for hover effect
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode
--       Used for String.fromCharCode() method for grid labeling
+  -       Used for String.fromCharCode() method for grid labeling
+
+https://alligator.io/js/jsdoc/
+  - Used to set up jsdoc
+https://en.wikipedia.org/wiki/JSDoc
+  - Used for as reference for jsdoc tags
+
