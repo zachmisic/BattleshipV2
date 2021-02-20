@@ -355,6 +355,10 @@ let player = function () {
 			if (this.ship[row][col] == '-') {
 				this.ship[row][col] = 'S';
 			}
+			else
+			{
+				checkifempty = 1;
+			}
 
 
 		}
@@ -435,7 +439,7 @@ let play = function(plr1,plr2,disp) {
 					placed = true;
 					this.p1.shipcount--;
 				}
-				if(this.p1.shipcount == 0) // catches the last placement and switches boards
+				if(this.p1.shipcount == 0)// catches the last ship placement and switches boards
 				{
 					this.display.hideBlueBigGrid();
 					this.display.showRedBigGrid();
@@ -456,32 +460,38 @@ let play = function(plr1,plr2,disp) {
 			this.shipsPlaced = true;
 			this.p1.shipcount = this.shipNum;
 			this.p2.shipcount = this.shipNum;
+			this.display.hideFlipBtn();
+			this.display.hideRedBigGrid();
+			this.display.showBlueBigGrid();
+			this.display.drawBoard(this.display.blue_small_grid,this.p1.ship);
+			this.display.drawBoard(this.display.red_small_grid,this.p2.ship);
+			this.gaemestart();
 		}
 		return placed;
 	}
 	this.gamestart=function(){
 		player ();
-		alert("Let the battle commence"); // show on display element
-		midgame();
+		alert("Let the battle commence"); // show on some display element
+		this.midgame();
 	};
 
 	this.midgame=function(){
 		do{
-			p1.fire(p2, row, col);
+			this.p1.fire(this.p2, row, col);
 			if (one.gameover() == false){
-				p2.fire(p1, row, col);
-				if (p2.gameover() == true){
+				this.p2.fire(this.p1, row, col);
+				if (this.p2.gameover() == true){
 					return p2.gameover()==true;
 				}
 			}
 
-		}while (!(p1.gameover()) && !(p2.gameover()));
+		}while (!(this.p1.gameover()) && !(this.p2.gameover()));
 		endgame();
 	};
 
 	this.endgame=function(){
 		alert("GAME OVER");
-		if (p1.gameover() == true){
+		if (this.p1.gameover() == true){
 			alert("Player 1 WINS!!!!!!!!");
 		}else{
 			alert("Player 2 WINS!!!!!!!!");
@@ -489,7 +499,9 @@ let play = function(plr1,plr2,disp) {
 	}
 }
 
-display.playGame = new play(new player,new player,display);
+let player1 = new player;
+let player2 = new player;
+display.playGame = new play(player1,player2,display);
 
 // in the grid cell's onClick eventListeners
 /* if(!play.gameStart) {
