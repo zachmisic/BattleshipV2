@@ -6,6 +6,7 @@ window.onload = function() {
 };
 
 let display = {
+	playGame: "",
 	red_big_grid: document.getElementById("redBigGrid"),
 	red_small_grid: document.getElementById("redSmallGrid"),
 	blue_big_grid: document.getElementById("blueBigGrid"),
@@ -13,6 +14,7 @@ let display = {
 	start_menu: document.getElementById("start-menu"),
 	reset_btn: document.getElementById("reset"),
 	start_btn: document.getElementById("start"),
+	flip_ship_btn: document.getElementById("orientation"),
 	ship_selectors: document.getElementsByClassName("ship-sel"),
 
 	gameStart: true, // determines if the game has started or not
@@ -37,15 +39,20 @@ let display = {
 			for(let i=0; i < this.ship_selectors.length; i++)
 			{
 				if(this.ship_selectors[i].classList.contains("selected"))
-					game.shipNum = i+1;
+				{
+					this.playGame.shipNum = i+1;
+					this.playGame.init(i+1);
+					// initalize player ship count here;
+				}
 			}
-			if(game.shipNum != 0)
+			if(this.playGame.shipNum != 0)
 			{
 				this.hideStartBtn();
 				this.showResetBtn();
 				this.hideStartMenu();
 				this.showBlueBigGrid();
 				this.showBlueSmallGrid();
+				this.showFlipBtn();
 			}
 			else
 			{
@@ -83,6 +90,19 @@ let display = {
 				}
 			});
 		}
+		
+		this.flip_ship_btn.addEventListener("click", () => { // allows the user to orient their ships on the board
+			if(this.flip_ship_btn.innerText == "Turn Ship Horizontal")
+			{
+				this.playGame.shipOrient = 'H';
+				this.flip_ship_btn.innerText = "Turn Ship Verticle";
+			}
+			else
+			{
+				this.playGame.shipOrient = 'V';
+				this.flip_ship_btn.innerText = "Turn Ship Horizontal";
+			}
+		});
 	},
 
 	/*
@@ -96,8 +116,33 @@ let display = {
 		grid_box_ref.addEventListener("mouseout", () => {
 			grid_box_ref.classList.remove("hover");
 		});
+		
+		grid_box_ref.addEventListener("click", () => {
+			if(this.playGame.shipsPlaced) // checks if all the ships are placed
+			{
+				this.hideFlipBtn();
+				this.drawBoard(this.blue_small_grid,this.playGame.p1.ship);
+				this.drawBoard(this.red_small_grid,this.playGame.p2.ship);
+				//startGame(row,col);
+			}
+			else
+			{
+				if(this.playGame.placeShip(this.parseID(grid_box_ref.id))) // calls the placeShip function with the clicked cell's id
+					grid_box_ref.classList.add("has-ship"); // if it has a ship it is assigned the has-ship class
+				else
+					console.log("cannot place here");
+			}
+		});
 
 		return grid_box_ref;
+	},
+	
+	hideFlipBtn: function() {
+		this.flip_ship_btn.style.display = "none";
+	},
+	
+	showFlipBtn: function() {
+		this.flip_ship_btn.style.display = "block";
 	},
 
 	hideResetBtn: function() {
@@ -164,6 +209,7 @@ let display = {
 		this.hideRedSmallGrid();
 		this.hideStartBtn();
 		this.hideResetBtn();
+		this.hideFlipBtn();
 	},
 
 	reset: function() {
@@ -198,17 +244,23 @@ let display = {
 			tempBox.classList.add("grid-box");
 			tempBox.classList.add("head");
 			tempBox.style.borderStyle = "none";
-			tempBox.innerText = i + "";
+			tempBox.innerText = (i+1) + "";
 			row.appendChild(tempBox);
 			for(let j=0; j < 10; j++) {
 				let box = document.createElement('td');
 				box.classList.add("grid-box");
+				box.id = "e" + "" + i + "" + j; // added an e to the begginning of the id because css doesnt allow ids beginning w/ numbers. ParseID will ignore
 				box = this.setBoxEventListeners(box);
 
 				row.appendChild(box);
 			}
 			table_ref.appendChild(row);
 		}
+	},
+	
+	parseID: function(num) {
+		console.log(num[1] + " " + num[2]);
+		return [parseInt(num[1]),parseInt(num[2])];
 	},
 
 	/*
@@ -225,6 +277,18 @@ let display = {
 			head.style = "position: absolute; left: 100px; top: " + (100+(20*i)) + "px; width: 20px; height: 20px; border-style: solid;";
 			document.querySelector('body').appendChild(head);
 		}
+	},
+	
+	drawBoard: function(table_ref,board) 
+	{ //expand on this
+		for(let i=0;i<10;i++)
+		{
+			for(let j=0;j<10;j++)
+			{
+				if(board[i][j] == 'S')
+					table_ref.querySelector("#e" + i + "" + j).classList.add("has-ship");
+			}
+		}
 	}
 };
 
@@ -232,125 +296,169 @@ let display = {
 // display.drawMainMenu();
 // display.drawMiniMap();
 
-/*
-	Takes: id(string) from selected unit
-	Returns: the row and column of the id
-	
- 	function uses the string from the units id to parse the row # and column #
-*/
-function parseID(num) {
-	return [num[0],num[1]];
-}
-
 let player = function () {
-	this.hm = new Array(10);
-	this.ship = new Array(10);
+	this.hm = [];
+	this.ship = [];
 	this.shipcount = 0;
 	this.hitstowin = 0;
 	this.hits = 0;
 	this.incoming = function (col, row) {
-		if (ship[row][col] == 'S') {
-			ship[row][col] = 'X';
+		if (this.ship[row][col] == 'S') {
+			this.ship[row][col] = 'X';
 			return (true);
 		}
 		else {
-			ship[row][col] = 'o';
+			this.ship[row][col] = 'o';
 			return (false);
 		}
 	};
 	this.gameover= function(){
-		return (hits == hitstowin);
+		return (this.hits == this.hitstowin);
 	};
-	this.setup = function (ships) {
+	this.setup = function() {
 		for (let i = 0; i < 10; i++) {
-			hm[i] = new Array(10);
-			ship[i] = new Array(10);
+			this.hm[i] = [];
+			this.ship[i] = [];
         }
 
-
-		for (let i= 1; i < 10; i++) {
-			hm[i][0] = i;
-			ship[i][0] = i;
-		}
-		for (let i = 1; i < 10; i++) {
-			for (let j = 1; j < 10; j++) {
-				ship[i][j] = '-';
-				hm[i][j] = '-';
+		for (let i = 0; i < 10; i++) {
+			for (let j = 0; j < 10; j++) {
+				this.ship[i][j] = '-';
+				this.hm[i][j] = '-';
 			}
 		}
 
-		for (let i = 1; i <= shipcount; i++) {
-			hitstowin += i;
+		for (let i = 1; i <= this.shipcount; i++) {
+			this.hitstowin += i;
 		}
 	};
 	this.fire=function(other, row, col){
 		let hit = false;
 
-		if (other.incoming(col, row)) {
+		if(other.incoming(col, row)) {
 
-			hm[row][col] = 'X';
+			this.hm[row][col] = 'X';
 			hit = true;
-			hits += 1;
+			this.hits += 1;
 		}
 		else {
-			hm[row][col] = 'o';
+			this.hm[row][col] = 'o';
 			hit = false;
 		}
 
 		return (hit);
 	};
 	this.setdown=function(length, col, row, vert){
+		let checkifempty = 0;
 		if (length == 1) {
 
-			if (ship[row][col] == '-') {
-				ship[row][col] = 'S';
+			if (this.ship[row][col] == '-') {
+				this.ship[row][col] = 'S';
 			}
 
 
 		}
 		else {
-			let checkifempty = 0;
-
+			
 			if (vert == 'V') {
+				for(let i = 0; i < length; i++) {
+					if(typeof this.ship[row + i] !== 'undefined')
+					{
+						if(this.ship[row + i][col] != '-') {
+							checkifempty = 1;
 
-				for (let i = 0; i < length; i++) {
-					if (ship[row + i][col] != '-') {
-						checkifempty += 1;
-
+						}
 					}
+					else
+					{
+						console.log("ship out of bounds");
+						checkifempty = 1;
+					}
+						
 				}
-
-				if (checkifempty == 0) {
-					for (let i = 0; i < length; i++) {
-						ship[row + i][col] = 'S';
+				if(checkifempty == 0) {
+					for(let i = 0; i < length; i++) {
+						this.ship[row + i][col] = 'S';
 					}
 				}
 
 			}
 			else {
 				for (let i = 0; i < length; i++) {
-					if (ship[row][col + i] != '-') {
-						checkifempty += 1;
+					if(typeof this.ship[row][col + i] !== 'undefined')
+					{
+						if (this.ship[row][col + i] != '-') {
+							checkifempty += 1;
 
+						}
+					}
+					else
+					{
+						console.log("ship out of bounds");
+						checkifempty = 1;
 					}
 				}
-
-				if (checkifempty == 0) {
+				if(checkifempty == 0) {
 					for (let i = 0; i < length; i++) {
-						ship[row][col + i] = 'S';
+						{
+							this.ship[row][col + i] = 'S';
+						}
 					}
 				}
 			}
 		}
+		return checkifempty;
 	};
 }
 
 let play = function(plr1,plr2,disp) {
 	this.p1 = plr1;
 	this.p2 = plr2;
+	this.init = (n) => { this.p1.shipcount = n; this.p1.setup(); this.p2.shipcount = n; this.p2.setup(); };
 	this.display = disp;
-	this.gameState = false;
-	this.placeShips = function(payload){};
+	this.shipsPlaced = false;
+	this.shipNum = 0;
+	this.shipOrient = 'V';
+	// place ship is called when a grid-box is clicked and shipsPlaced is equal to false
+	this.placeShip = function(id) {
+		let placed = false;
+		let row = id[0];
+		let col = id[1];
+		if(this.p1.shipcount != 0 || this.p2.shipcount != 0)
+		{
+			if(this.p1.shipcount != 0)
+			{
+				console.log(row + " " + col);
+				if(this.p1.setdown(this.p1.shipcount,col,row,this.shipOrient) == 0)
+				{
+					console.log("ship placed p1");
+					placed = true;
+					this.p1.shipcount--;
+				}
+				if(this.p1.shipcount == 0) // catches the last placement and switches boards
+				{
+					this.display.hideBlueBigGrid();
+					this.display.showRedBigGrid();
+				}
+			}
+			else
+			{
+				if(this.p2.setdown(this.p2.shipcount,col,row,this.shipOrient) == 0)
+				{
+					console.log("ship placed p2");
+					placed = true;
+					this.p2.shipcount--;
+				}
+			}
+		}
+		else
+		{
+			this.shipsPlaced = true;
+			this.p1.shipcount = this.shipNum;
+			this.p2.shipcount = this.shipNum;
+		}
+		return placed;
+	}
 	this.gamestart=function(){
 		player ();
 		alert("Let the battle commence"); // show on display element
@@ -381,9 +489,13 @@ let play = function(plr1,plr2,disp) {
 	}
 }
 
-let game = {
-	shipNum: 0,
-	placeShips: function(p1,p2) {
-	}
-}
+display.playGame = new play(new player,new player,display);
+
+// in the grid cell's onClick eventListeners
+/* if(!play.gameStart) {
+	if(play.turn)
+	{
+		displa
+		play.placeShip
 	
+*/

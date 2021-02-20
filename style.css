@@ -18,6 +18,12 @@ button {
     margin: 5px;
 }
 
+#orientation {
+	height: 60px;
+	width: 70px;
+	margin: 5px;
+}
+
 .row {
     width: 100%;
     margin: auto;
@@ -68,6 +74,10 @@ button {
 .ship-sel.selected {
     transform: scale(1.1);
     background-color: lightsteelblue;
+}
+
+.has-ship {
+	background-color: gray;
 }
 
 #ship-row {
