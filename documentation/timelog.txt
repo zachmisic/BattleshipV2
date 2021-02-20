@@ -1,7 +1,36 @@
-Estimated hours to complete:
+Estimated time to complete: 3500 minutes or about 58.33 hours 
+  *we arrived to this conclusion from previous experience with doing labs in EECS268
+Actual time to complete: 
 
 
 Team meetings:
-2/15 9:00-9:10 am
-2/16 2:15-3:40 pm
+2/11 9:10-9:50 
+  *40 min
+2/15 9:00-9:10 
+  *10 min
+2/16 14:15-15:40 
+  *85 min
+2/17 15:00-15:30
+  *30 min
+total time: 165 min
+
+Karen: 
+2/16 22:40-23:00 
+  *Researching JavaScript, translating code
+  *20 min
+2/17 14:50-16:00
+  *Researching JavaScript, translating code
+  *70 min
+2/17 17:20-17:30
+  *code translation
+  *10 min
+2/19 15:30-22:00
+  *Jsdoc research 
+  *390 min
+2/20 12:00-15:20
+  *Doing documentation
+  *200 min
+total time: 690 min
+
+
 
