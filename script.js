@@ -602,7 +602,7 @@ let player = function () {
  * play function that drives the game
  * @param {object} plr1 -player 1 object
  * @param {object} plr2 - player 2 object
- * @param disp
+ * @param {object} disp - display object
  */
 let play = function(plr1,plr2,disp) {
 	this.p1 = plr1;
@@ -663,8 +663,8 @@ let play = function(plr1,plr2,disp) {
 	};
 
 	/**
-   * middle of the game
-   */
+   	 * middle of the game
+  	 */
 	this.midgame=function(id){
 		let row = id[0];
 		let col = id[1];
