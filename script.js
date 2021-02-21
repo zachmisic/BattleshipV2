@@ -125,6 +125,7 @@ let display = {
 				this.showBlueSmallGrid();
 				this.showFlipBtn();
 				GameConsole.show();
+				GameConsole.write("Blue, place your ships on the left grid.", true);
 			}
 			else
 			{
@@ -183,6 +184,8 @@ let display = {
 	*@param {object} grid_box_ref
 	*/
 	setBoxEventListeners: function(grid_box_ref) {
+
+
 		grid_box_ref.addEventListener("mouseover", () => {
 			grid_box_ref.classList.add("hover");
 		});
@@ -192,6 +195,10 @@ let display = {
 		});
 
 		grid_box_ref.addEventListener("click", (e) => {
+			// This doesn't allow the small grid boxes to get clicked.
+			if( !grid_box_ref.classList.contains("can-click") ) {
+				return;
+			}
 			// Check whether we're still in the ship placement phase.
 			if(this.playGame.shipsPlaced)
 			{
@@ -415,12 +422,18 @@ let display = {
 	initGrid: function(table_ref) {
 		let headrow = document.createElement('tr');
 		let box = document.createElement("th"); // adds an extra th element to offset the column labels
+		if(table_ref.classList.contains("big-grid")) {
+			box.classList.add("can-click")
+		}
 		box.classList.add("grid-box");
 		box.classList.add("head");
 		headrow.appendChild(box);
 		for(let i=0; i < 10; i++) {
 			box = document.createElement("th");
 			box.classList.add("grid-box");
+			if(table_ref.classList.contains("big-grid")) {
+				box.classList.add("can-click")
+			}
 			box.classList.add("head");
 			box.innerText = String.fromCharCode(65+i); // labels the columns
 			headrow.appendChild(box);
@@ -432,6 +445,9 @@ let display = {
 			row.classList.add("grid-row");
 			let tempBox = document.createElement('td'); // creates an extra td element on the front of each row to hold the row label
 			tempBox.classList.add("grid-box");
+			if(table_ref.classList.contains("big-grid")) {
+				tempBox.classList.add("can-click")
+			}
 			tempBox.classList.add("head");
 			tempBox.style.borderStyle = "none";
 			tempBox.innerText = (i+1) + "";
@@ -439,6 +455,9 @@ let display = {
 			for(let j=0; j < 10; j++) {
 				let box = document.createElement('td');
 				box.classList.add("grid-box");
+				if(table_ref.classList.contains("big-grid")) {
+					box.classList.add("can-click")
+				}
 				box.id = "e" + "" + i + "" + j; // added an e to the begginning of the id because css doesnt allow ids beginning w/ numbers. ParseID will ignore
 				box = this.setBoxEventListeners(box);
 
@@ -686,24 +705,25 @@ let play = function(plr1,plr2,disp) {
 		let col = id[1];
 		if(this.p1.shipcount !== 0 || this.p2.shipcount !== 0)
 		{
-			if(this.p1.shipcount != 0)
+			if(this.p1.shipcount !== 0)
 			{
 				console.log(row + " " + col);
-				if(this.p1.setdown(this.p1.shipcount,col,row,this.shipOrient) == 0)
+				if(this.p1.setdown(this.p1.shipcount,col,row,this.shipOrient) === 0)
 				{
 					GameConsole.write("Blue placed a ship at a secret location.");
 					placed = true;
 					this.p1.shipcount--;
 				}
-				if(this.p1.shipcount == 0)// catches the last ship placement and switches boards
+				if(this.p1.shipcount === 0)// catches the last ship placement and switches boards
 				{
+					GameConsole.write("Red, place your ships on the left grid.", true);
 					this.display.hideBlueBigGrid();
 					this.display.showRedBigGrid();
 				}
 			}
 			else
 			{
-				if(this.p2.setdown(this.p2.shipcount,col,row,this.shipOrient) == 0)
+				if(this.p2.setdown(this.p2.shipcount,col,row,this.shipOrient) === 0)
 				{
 					GameConsole.write("Red placed a ship at a secret location.");
 					placed = true;
