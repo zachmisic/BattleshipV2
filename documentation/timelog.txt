@@ -90,3 +90,10 @@ Alex Gisi
  * Programmed display and added CSS
 2/18 1 hr
  * Improved display style
+2/21 3 hr
+ * Added sixth ship option
+ * Added game console
+ * Fixed the fact that the small grid could be clicked
+ * Added labels to the grids
+ * Fixed the reset functionality
+ * Made the display more aesthetic by adding padding and making the small grids bigger
