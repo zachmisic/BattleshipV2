@@ -1,9 +1,10 @@
-Estimated time to complete: 1350 minutes or about 20 hours 
-  * we arrived to this conclusion from previous experience with doing labs in EECS268
-  *implementation of user interface: 600 min
-  *implementation of game: 400 min
-  *documentations: 200
-  *team meetings: 150
+Estimated time to complete:
+  *Team meetings: 150 min
+Becky:
+2 hr-learning javascript
+3 hr-coding
+1 hr-documentation
+total-6 hr
 
 Actual time to complete: 
 
@@ -52,6 +53,7 @@ Becky:
  * documentations
 2/21 1:10-1:30
  * documentations
+total=475 min
 
 Alex Jones:
 2/8 2 HR 
