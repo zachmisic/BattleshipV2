@@ -130,7 +130,7 @@ let display = {
 				this.hideFlipBtn();
 				this.drawBoard(this.blue_small_grid,this.playGame.p1.ship);
 				this.drawBoard(this.red_small_grid,this.playGame.p2.ship);
-				//startGame(row,col);
+				this.playGame.midgame(this.parseID(grid_box_ref.id));
 			}
 			else
 			{
@@ -356,6 +356,26 @@ let display = {
 			{
 				if(board[i][j] == 'S')
 					table_ref.querySelector("#e" + i + "" + j).classList.add("has-ship");
+				if(board[i][j] == 'X')
+					table_ref.querySelector("#e" + i + "" + j).classList.add("hit-ship");
+				if(board[i][j] == 'o')
+					table_ref.querySelector("#e" + i + "" + j).classList.add("miss");
+			}
+		}
+	},
+	
+	clearBoard: function(table_ref,board)
+	{
+		for(let i=0;i<10;i++)
+		{
+			for(let j=0;j<10;j++)
+			{
+				if(board[i][j] == 'S')
+					table_ref.querySelector("#e" + i + "" + j).classList.remove("has-ship");
+				if(board[i][j] == 'X')
+					table_ref.querySelector("#e" + i + "" + j).classList.remove("hit-ship");
+				if(board[i][j] == 'o')
+					table_ref.querySelector("#e" + i + "" + j).classList.remove("miss");
 			}
 		}
 	}
@@ -381,10 +401,12 @@ let player = function () {
 	 * @param {number} row - rows
 	 * @param {boolen} - reture if hit, false if not
 	 */
-	this.incoming = function (col, row) {
+	this.incoming = function (col, row)
+	{	
+		console.log(row);
 		if (this.ship[row][col] == 'S') {
-			this.ship[row][col] = 'X';
-			return (true);
+				this.ship[row][col] = 'X';
+				return (true);
 		}
 		else {
 			this.ship[row][col] = 'o';
@@ -437,6 +459,7 @@ let player = function () {
 			this.hits += 1;
 		}
 		else {
+			console.log("here");
 			this.hm[row][col] = 'o';
 			hit = false;
 		}
@@ -531,6 +554,7 @@ let play = function(plr1,plr2,disp) {
 	this.init = (n) => { this.p1.shipcount = n; this.p1.setup(); this.p2.shipcount = n; this.p2.setup(); };
 	this.display = disp;
 	this.shipsPlaced = false;
+	this.playerTurn = true;
 	this.shipNum = 0;
 	this.shipOrient = 'V';
 
@@ -579,8 +603,9 @@ let play = function(plr1,plr2,disp) {
 			this.display.hideRedBigGrid();
 			this.display.showBlueBigGrid();
 			this.display.drawBoard(this.display.blue_small_grid,this.p1.ship);
+			this.display.clearBoard(this.display.blue_big_grid,this.p1.ship);
 			this.display.drawBoard(this.display.red_small_grid,this.p2.ship);
-			this.gaemestart();
+			this.display.clearBoard(this.display.red_big_grid,this.p2.ship);
 		}
 		return placed;
 	}
@@ -597,18 +622,36 @@ let play = function(plr1,plr2,disp) {
 	/**
    * middle of the game
    */
-	this.midgame=function(){
-		do{
-			this.p1.fire(this.p2, row, col);
-			if (one.gameover() == false){
-				this.p2.fire(this.p1, row, col);
-				if (this.p2.gameover() == true){
-					return p2.gameover()==true;
+	this.midgame=function(id){
+		let row = id[0];
+		let col = id[1];
+		if(!(this.p1.gameover()) && !(this.p2.gameover()))
+		{
+			if(this.p1.fire(this.p2, row, col))
+			{
+				this.display.blue_big_grid.querySelector("#e" + row + "" + col).classList.add("hit-ship");
+			}
+			else
+			{
+				this.display.blue_big_grid.querySelector("#e" + row + "" + col).classList.add("miss");
+			}
+			if(this.p1.gameover() == false){
+				if(this.p2.fire(this.p1, row, col))
+				{
+					display.red_big_grid.querySelector("#e" + row + "" + col).classList.add("hit-ship");
+				}
+				else
+				{
+					this.display.red_big_grid.querySelector("#e" + row + "" + col).classList.add("miss");
 				}
 			}
-
-		}while (!(this.p1.gameover()) && !(this.p2.gameover()));
-		endgame();
+			if (this.p2.gameover() == true)
+			{
+					return p2.gameover()==true;
+			}
+		}
+		else
+			this.endgame();
 	};
 
 	/**

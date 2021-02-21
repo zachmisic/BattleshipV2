@@ -80,6 +80,14 @@ button {
 	background-color: gray;
 }
 
+.hit-ship {
+	background-color: red;
+}
+
+.miss {
+	backgound-color: blue;
+}
+
 #ship-row {
     flex-flow: row wrap-reverse;
 }
