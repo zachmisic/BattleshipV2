@@ -71,6 +71,7 @@ let display = {
 
 		this.reset_btn.addEventListener("click", () => {
 			this.reset();
+			location.reload();
 		});
 
 		// Mouseover, mouseout, and selection for ship selection buttons.
@@ -375,28 +376,14 @@ let display = {
 		}
 	},
 
-	 	/**
-	 	 * parseID
-		 * @param {number} num
-	 	 * @return {number} num1+num2
-		 */
+	/**
+	 * parseID
+	 * @param {number} num
+	 * @return {number} num1+num2
+	 */
 	parseID: function(num) {
 		console.log(num[1] + " " + num[2]);
 		return [parseInt(num[1]),parseInt(num[2])];
-	},
-
-	/**
-	 * function takes in the number of the largest ship in the fleet, and creates a block representation of it. This is purely visual and provides no functionality.
-	 * @param {number} n - number of the largest ship
-	 */
-	drawShip: function(n) {
-		let head = "";
-		for(let i=0;i<n;i++)
-		{
-			head = document.createElement('div');
-			head.style = "position: absolute; left: 100px; top: " + (100+(20*i)) + "px; width: 20px; height: 20px; border-style: solid;";
-			document.querySelector('body').appendChild(head);
-		}
 	},
 
 	/**
@@ -419,7 +406,12 @@ let display = {
 			}
 		}
 	},
-	
+
+	/**
+	 * Clear visual display of colors.
+	 * @param table_ref Table holding ships.
+	 * @param board Array representation of the board from the game class.
+	 */
 	clearBoard: function(table_ref,board)
 	{
 		for(let i=0;i<10;i++)
@@ -455,7 +447,7 @@ let player = function () {
 	 * take user input and react
 	 * @param {number} col - columns
 	 * @param {number} row - rows
-	 * @return {boolen}  return if hit, false if not
+	 * @return {boolean}  return if hit, false if not
 	 */
 	this.incoming = function (col, row)
 	{	
@@ -623,7 +615,7 @@ let play = function(plr1,plr2,disp) {
 		let placed = false;
 		let row = id[0];
 		let col = id[1];
-		if(this.p1.shipcount != 0 || this.p2.shipcount != 0)
+		if(this.p1.shipcount !== 0 || this.p2.shipcount !== 0)
 		{
 			if(this.p1.shipcount != 0)
 			{
@@ -714,7 +706,7 @@ let play = function(plr1,plr2,disp) {
 			alert("Player 2 WINS!!!!!!!!");
 		}
 	}
-}
+};
 
 let player1 = new player;
 let player2 = new player;
