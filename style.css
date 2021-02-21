@@ -80,12 +80,12 @@ button {
 	background-color: gray;
 }
 
-.hit-ship {
-	background-color: red;
+.miss-ship {
+	background-color: blue;
 }
 
-.miss {
-	backgound-color: blue;
+.hit-ship {
+	background-color: red;
 }
 
 #ship-row {

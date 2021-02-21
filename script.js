@@ -21,6 +21,7 @@ let display = {
 	start_btn: document.getElementById("start"),
 	flip_ship_btn: document.getElementById("orientation"),
 	ship_selectors: document.getElementsByClassName("ship-sel"),
+	noClick: false,
 
 	gameStart: true, // determines if the game has started or not
 	mainMenu: "", // varaible that represents the canvas for the menu background
@@ -124,18 +125,73 @@ let display = {
 			grid_box_ref.classList.remove("hover");
 		});
 
-		grid_box_ref.addEventListener("click", () => {
+		grid_box_ref.addEventListener("click", (e) => {
 			if(this.playGame.shipsPlaced) // checks if all the ships are placed
 			{
-				this.hideFlipBtn();
-				this.drawBoard(this.blue_small_grid,this.playGame.p1.ship);
-				this.drawBoard(this.red_small_grid,this.playGame.p2.ship);
-				this.playGame.midgame(this.parseID(grid_box_ref.id));
+				if(this.noClick == true) // checks to see if fucntion is waiting on setTimeout to perform board transition
+				{
+					console.log(this.noClick);
+					e.stopPropagation();
+					e.preventDefault();
+				}
+				else
+				{
+					this.hideFlipBtn();
+					this.drawBoard(this.blue_small_grid,this.playGame.p1.ship);
+					this.drawBoard(this.red_small_grid,this.playGame.p2.ship);
+					this.playGame.midgame(this.parseID(grid_box_ref.id));
+					this.noClick = true;
+					console.log(this.noClick);
+					if(this.playGame.playerTurn)
+					{
+						setTimeout(() => 
+						{
+							this.hideBlueBigGrid();
+							this.hideBlueSmallGrid();
+							this.drawBoard(this.red_small_grid,this.playGame.p2.ship);
+							this.showRedBigGrid();
+							this.showRedSmallGrid();
+							this.noClick = false;
+							
+						}, 3000);
+					}
+					else
+					{
+						setTimeout( () => { 
+							this.hideRedBigGrid();
+							this.hideRedSmallGrid();
+							this.drawBoard(this.blue_small_grid,this.playGame.p1.ship);
+							this.showBlueBigGrid();
+							this.showBlueSmallGrid();
+							this.noClick = false;
+						}, 3000);
+					}
+					console.log(this.noClick);
+					this.playGame.playerTurn = !this.playGame.playerTurn;
+				}
+				
 			}
 			else
 			{
 				if(this.playGame.placeShip(this.parseID(grid_box_ref.id))) // calls the placeShip function with the clicked cell's id
+				{					
 					grid_box_ref.classList.add("has-ship"); // if it has a ship it is assigned the has-ship class
+					this.drawBoard(this.blue_big_grid,this.playGame.p1.ship);
+					this.drawBoard(this.red_big_grid,this.playGame.p2.ship);
+					if(this.playGame.p2.shipcount == 0)
+					{
+						this.playGame.shipsPlaced = true;
+						this.playGame.p1.shipcount = this.shipNum;
+						this.playGame.p2.shipcount = this.shipNum;
+						this.hideFlipBtn();
+						this.hideRedBigGrid();
+						this.showBlueBigGrid();
+						this.drawBoard(this.blue_small_grid,this.playGame.p1.ship);
+						this.clearBoard(this.blue_big_grid,this.playGame.p1.ship);
+						this.drawBoard(this.red_small_grid,this.playGame.p2.ship);
+						this.clearBoard(this.red_big_grid,this.playGame.p2.ship);
+					}
+				}
 				else
 					console.log("cannot place here");
 			}
@@ -359,7 +415,7 @@ let display = {
 				if(board[i][j] == 'X')
 					table_ref.querySelector("#e" + i + "" + j).classList.add("hit-ship");
 				if(board[i][j] == 'o')
-					table_ref.querySelector("#e" + i + "" + j).classList.add("miss");
+					table_ref.querySelector("#e" + i + "" + j).classList.add("miss-ship");
 			}
 		}
 	},
@@ -375,7 +431,7 @@ let display = {
 				if(board[i][j] == 'X')
 					table_ref.querySelector("#e" + i + "" + j).classList.remove("hit-ship");
 				if(board[i][j] == 'o')
-					table_ref.querySelector("#e" + i + "" + j).classList.remove("miss");
+					table_ref.querySelector("#e" + i + "" + j).classList.remove("miss-ship");
 			}
 		}
 	}
@@ -594,21 +650,8 @@ let play = function(plr1,plr2,disp) {
 				}
 			}
 		}
-		else
-		{
-			this.shipsPlaced = true;
-			this.p1.shipcount = this.shipNum;
-			this.p2.shipcount = this.shipNum;
-			this.display.hideFlipBtn();
-			this.display.hideRedBigGrid();
-			this.display.showBlueBigGrid();
-			this.display.drawBoard(this.display.blue_small_grid,this.p1.ship);
-			this.display.clearBoard(this.display.blue_big_grid,this.p1.ship);
-			this.display.drawBoard(this.display.red_small_grid,this.p2.ship);
-			this.display.clearBoard(this.display.red_big_grid,this.p2.ship);
-		}
 		return placed;
-	}
+	};
 
 	/**
 	 * start of game
@@ -625,29 +668,35 @@ let play = function(plr1,plr2,disp) {
 	this.midgame=function(id){
 		let row = id[0];
 		let col = id[1];
+		let gover = false;
 		if(!(this.p1.gameover()) && !(this.p2.gameover()))
 		{
-			if(this.p1.fire(this.p2, row, col))
+			if(this.playerTurn)
 			{
-				this.display.blue_big_grid.querySelector("#e" + row + "" + col).classList.add("hit-ship");
+				if(this.p1.fire(this.p2, row, col))
+				{
+					console.log("p1 has gone");
+					this.display.blue_big_grid.querySelector("#e" + row + "" + col).classList.add("hit-ship");
+				}
+				else
+				{
+					console.log("p1 has gone");
+					this.display.blue_big_grid.querySelector("#e" + row + "" + col).classList.add("miss-ship");
+					console.log("here I am");
+				}
 			}
-			else
+			if(!this.playerTurn)
 			{
-				this.display.blue_big_grid.querySelector("#e" + row + "" + col).classList.add("miss");
-			}
-			if(this.p1.gameover() == false){
 				if(this.p2.fire(this.p1, row, col))
 				{
+					console.log("p2 has gone");
 					display.red_big_grid.querySelector("#e" + row + "" + col).classList.add("hit-ship");
 				}
 				else
 				{
-					this.display.red_big_grid.querySelector("#e" + row + "" + col).classList.add("miss");
+					console.log("p2 has gone");
+					this.display.red_big_grid.querySelector("#e" + row + "" + col).classList.add("miss-ship");
 				}
-			}
-			if (this.p2.gameover() == true)
-			{
-					return p2.gameover()==true;
 			}
 		}
 		else
