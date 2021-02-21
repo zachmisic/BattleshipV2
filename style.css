@@ -20,14 +20,13 @@ button {
 }
 
 #orientation {
-	height: 60px;
-	width: 70px;
-	margin: 5px;
+	width: 150px;
 }
 
 .row {
     width: 100%;
     margin: auto;
+    padding: 5px 0 5px 0;
 
     display: flex;
     flex-flow: row nowrap;
@@ -45,14 +44,18 @@ button {
     align-items: center;
 }
 
-#start-menu {
-
+.text-mid {
+    text-align: center;
 }
 
 #info-row {
-    height: 100px;
+    min-height: 100px;
     flex-flow: column nowrap;
+}
 
+#console-row {
+    border-top: thin solid black;
+    border-bottom: thin solid black;
 }
 
 #main-row {
@@ -106,7 +109,7 @@ table td {
 }
 
 .small-grid {
-    transform: scale(0.4);
+    transform: scale(0.6);
 }
 
 .grid-box {
@@ -115,10 +118,6 @@ table td {
     padding: 5px;
 }
 
-.grid-box.hover {
+.big-grid .grid-box.hover {
     background-color: lightcoral;
-}
-
-.small-grid {
-
 }

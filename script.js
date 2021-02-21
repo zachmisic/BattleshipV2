@@ -1,33 +1,97 @@
-main_row = document.getElementById("main-row");
-/**
- * initialize game object
- */
+'use strict';
+const c_to_l = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
 window.onload = function() {
 	display.init();
-	// TODO: initialize game object.
 };
 
 /**
- * display the play grids of the game
+ * The console gives players info about the game via text.
+ */
+let GameConsole = {
+	row: document.getElementById("console-row"),
+	message_list: document.getElementById("console-messages"),
+	messages_active: 0,
+
+	/**
+	 * Write a new message to the console.
+	 * @param new_text Text of message.
+	 * @param is_instruction Indicates whether the message should be displayed as an instruction to the players.
+	 */
+	write: function(new_text, is_instruction) {
+		let msg = new_text;
+		let li = document.createElement("li");
+
+		if (is_instruction) {
+			msg = "Game: " + new_text;
+			li.classList.add("game-msg");
+		}
+		let text = document.createTextNode(msg);
+		li.appendChild(text);
+		this.message_list.appendChild(li);
+		this.messages_active++;
+
+		// Remove oldest message when list grows.
+		if(this.messages_active > 5) {
+			this.message_list.childNodes[0].remove();
+		}
+	},
+
+	/**
+	 * Remove the text from the console.
+	 */
+	clearText: function() {
+		let messages = this.message_list.childNodes;
+		for(let m in messages) {
+			m.remove();
+		}
+	},
+
+	/**
+	 * Remove console from screen.
+	 */
+	hide: function() {
+		this.row.style.display = 'none';
+	},
+
+	/**
+	 * Show console on screen.
+	 */
+	show: function() {
+		this.row.style.display = 'block';
+	},
+};
+
+/**
+ * The display handles all visual representations needed for the game.
  */
 let display = {
 	playGame: "",
+
 	red_big_grid: document.getElementById("redBigGrid"),
+	red_big_con: document.getElementById("redBigContainer"),
+
 	red_small_grid: document.getElementById("redSmallGrid"),
+	red_small_con: document.getElementById("redSmallContainer"),
+
 	blue_big_grid: document.getElementById("blueBigGrid"),
+	blue_big_con: document.getElementById("blueBigContainer"),
+
 	blue_small_grid: document.getElementById("blueSmallGrid"),
+	blue_small_con: document.getElementById("blueSmallContainer"),
+
 	start_menu: document.getElementById("start-menu"),
 	reset_btn: document.getElementById("reset"),
 	start_btn: document.getElementById("start"),
 	flip_ship_btn: document.getElementById("orientation"),
 	ship_selectors: document.getElementsByClassName("ship-sel"),
-	noClick: false,
 
+	noClick: false,
 	gameStart: true, // determines if the game has started or not
 	mainMenu: "", // varaible that represents the canvas for the menu background
 
 	/**
-	* initalize grid
+	* Set event listeners and create grids.
 	*/
 	init: function() {
 		this.reset();
@@ -39,7 +103,7 @@ let display = {
 	},
 
 	/**
-	*Sets event listeners for the elements existing when the page is loaded, e.i. not the grids.
+	* Sets event listeners for the elements existing when the page is loaded, i.e. not the grids.
 	*/
 	setEventListeners: function() {
 		this.start_btn.addEventListener("click", () => {
@@ -60,6 +124,7 @@ let display = {
 				this.showBlueBigGrid();
 				this.showBlueSmallGrid();
 				this.showFlipBtn();
+				GameConsole.show();
 			}
 			else
 			{
@@ -129,7 +194,7 @@ let display = {
 		grid_box_ref.addEventListener("click", (e) => {
 			if(this.playGame.shipsPlaced) // checks if all the ships are placed
 			{
-				if(this.noClick == true) // checks to see if fucntion is waiting on setTimeout to perform board transition
+				if(this.noClick == true) // checks to see if function is waiting on setTimeout to perform board transition
 				{
 					console.log(this.noClick);
 					e.stopPropagation();
@@ -194,7 +259,7 @@ let display = {
 					}
 				}
 				else
-					console.log("cannot place here");
+					GameConsole.write("You cannot place a ship on that square.", true);
 			}
 		});
 
@@ -261,6 +326,7 @@ let display = {
 		 * hide red big grid
 		 */
 	hideRedBigGrid: function() {
+		this.red_big_con.style.display = "none";
 		this.red_big_grid.style.display = "none";
 	},
 
@@ -268,6 +334,7 @@ let display = {
 	 * show red big grid
 	 */
 	showRedBigGrid: function() {
+		this.red_big_con.style.display = "flex";
 		this.red_big_grid.style.display = "table";
 	},
 
@@ -275,6 +342,7 @@ let display = {
 	 * show red small grid
 	 */
 	showRedSmallGrid: function() {
+		this.red_small_con.style.display = "flex";
 		this.red_small_grid.style.display = "table";
 	},
 
@@ -282,6 +350,7 @@ let display = {
 	 * show red small grid
 	 */
 	hideRedSmallGrid: function () {
+		this.red_small_con.style.display = "none";
 		this.red_small_grid.style.display = "none";
 	},
 
@@ -289,6 +358,7 @@ let display = {
 	 * hide blue big grid
 	 */
 	hideBlueBigGrid: function() {
+		this.blue_big_con.style.display = "none";
 		this.blue_big_grid.style.display = "none";
 	},
 
@@ -296,6 +366,7 @@ let display = {
 	 * show blue big grid
 	 */
 	showBlueBigGrid: function() {
+		this.blue_big_con.style.display = "flex";
 		this.blue_big_grid.style.display = "table";
 	},
 
@@ -303,6 +374,7 @@ let display = {
 	 * hide blue small grid
 	 */
 	hideBlueSmallGrid: function() {
+		this.blue_small_con.style.display = "none";
 		this.blue_small_grid.style.display = "none";
 	},
 
@@ -310,6 +382,7 @@ let display = {
 	 * show blue small grid
 	 */
 	showBlueSmallGrid: function() {
+		this.blue_small_con.style.display = "flex";
 		this.blue_small_grid.style.display = "table";
 	},
 
@@ -325,6 +398,7 @@ let display = {
 		this.hideStartBtn();
 		this.hideResetBtn();
 		this.hideFlipBtn();
+		GameConsole.hide();
 	},
 
 	/**
@@ -450,14 +524,15 @@ let player = function () {
 	 * @return {boolean}  return if hit, false if not
 	 */
 	this.incoming = function (col, row)
-	{	
-		console.log(row);
-		if (this.ship[row][col] == 'S') {
+	{
+		if (this.ship[row][col] === 'S') {
 				this.ship[row][col] = 'X';
+				GameConsole.write("Hit at (" + (row+1) + ' ' + c_to_l[col] + ").", false);
 				return (true);
 		}
 		else {
 			this.ship[row][col] = 'o';
+			GameConsole.write("Miss at (" + (row+1) + ', ' + c_to_l[col] + ").", false);
 			return (false);
 		}
 	};
