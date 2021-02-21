@@ -53,6 +53,19 @@ Becky:
 2/21 1:10-1:30
  * documentations
 
+Alex Jones:
+2/8 2 HR 
+ * writing rapid prototype in c++
+2/9 30 Min
+ * Planning with Jake and Alex
+2/11 45 Min
+ * Planning with Jake, Becky, and Karen
+2/16 2 HR
+ * transferring the back end code form c++ to javascript
+2/19 1 HR 30 Min
+ * simplifying the player class, better usability from front end
+total= 6 HR 45 Min
+
 
 
 
