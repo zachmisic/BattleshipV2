@@ -12,4 +12,6 @@ https://alligator.io/js/jsdoc/
   - Used to set up jsdoc
 https://en.wikipedia.org/wiki/JSDoc
   - Used for as reference for jsdoc tags
+  https://www.w3schools.com/jsref/event_stoppropagation.asp
+  - Used to prevent click
 
