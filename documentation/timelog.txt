@@ -1,9 +1,13 @@
-Estimated time to complete: 3500 minutes or about 58.33 hours 
+Estimated time to complete: 1350 minutes or about 20 hours 
   * we arrived to this conclusion from previous experience with doing labs in EECS268
+  *implementation of user interface: 600 min
+  *implementation of game: 400 min
+  *documentations: 200
+  *team meetings: 150
+
 Actual time to complete: 
 
-
-Team meetings:
+Team meetings (every member attended):
 2/11 9:10-9:50 
   * 40 min
 2/15 9:00-9:10 
@@ -31,6 +35,22 @@ Karen:
   * Doing documentation
   * 570 min
 total time: 690 min
+
+Becky:
+2/14 19:55-20:20
+ *learning basics of javascript
+2/15 20:10-20:40
+ *learning functions, methods, objects of javascipt
+2/17 12:00-1:00
+ *reading through codes
+ *trying to figure out push/pull
+2/17 22:30-23:00
+ * writing player function
+2/19 21:00-22:30
+ *installing jsdoc, watching video tutorials, resolve installing issue
+2/20 1:10-2:50
+ * documentations
+
 
 
 
