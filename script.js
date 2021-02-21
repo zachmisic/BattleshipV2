@@ -386,8 +386,7 @@ let display = {
 // display.drawMiniMap();
 
 /**
- * establish player class
- * @class player
+ * establish player function
  */
 let player = function () {
 	this.hm = [];
@@ -473,7 +472,7 @@ let player = function () {
 	 * @param {number} length 
 	 * @param {number} col 
 	 * @param {number} row
-	 * @param {type} vert
+	 * @param {string} vert
 	 * @return {boolean} check if empty
 	 */
 	this.setdown=function(length, col, row, vert){
@@ -544,10 +543,10 @@ let player = function () {
 }
 
 /**
- * play class that drives the game
- * @param {player} plr1 -player 1 object
- * @param {player} plr2 - player 2 object
- * @param {display} disp -display class
+ * play function that drives the game
+ * @param {object} plr1 -player 1 object
+ * @param {object} plr2 - player 2 object
+ * @param disp
  */
 let play = function(plr1,plr2,disp) {
 	this.p1 = plr1;
@@ -563,7 +562,7 @@ let play = function(plr1,plr2,disp) {
 	 * place ship is called when a grid-box is clicked and shipsPlaced is equal to false
 	 * @param {number} id
 	 * @return {boolean} if placed return true, else turn false
-		*/
+	*/
 	this.placeShip = function(id) {
 		let placed = false;
 		let row = id[0];
