@@ -128,7 +128,7 @@ let display = {
 			}
 			else
 			{
-				console.log("please select a ship"); //display this in a text box in display
+				alert("Select a ship count first."); //display this in a text box in display
 			}
 
 
@@ -192,11 +192,11 @@ let display = {
 		});
 
 		grid_box_ref.addEventListener("click", (e) => {
-			if(this.playGame.shipsPlaced) // checks if all the ships are placed
+			// Check whether we're still in the ship placement phase.
+			if(this.playGame.shipsPlaced)
 			{
-				if(this.noClick == true) // checks to see if function is waiting on setTimeout to perform board transition
+				if(this.noClick === true) // checks to see if function is waiting on setTimeout to perform board transition
 				{
-					console.log(this.noClick);
 					e.stopPropagation();
 					e.preventDefault();
 				}
@@ -207,7 +207,6 @@ let display = {
 					this.drawBoard(this.red_small_grid,this.playGame.p2.ship);
 					this.playGame.midgame(this.parseID(grid_box_ref.id));
 					this.noClick = true;
-					console.log(this.noClick);
 					if(this.playGame.playerTurn)
 					{
 						setTimeout(() => 
@@ -232,7 +231,6 @@ let display = {
 							this.noClick = false;
 						}, 3000);
 					}
-					console.log(this.noClick);
 					this.playGame.playerTurn = !this.playGame.playerTurn;
 				}
 				
@@ -244,7 +242,7 @@ let display = {
 					grid_box_ref.classList.add("has-ship"); // if it has a ship it is assigned the has-ship class
 					this.drawBoard(this.blue_big_grid,this.playGame.p1.ship);
 					this.drawBoard(this.red_big_grid,this.playGame.p2.ship);
-					if(this.playGame.p2.shipcount == 0)
+					if(this.playGame.p2.shipcount === 0)
 					{
 						this.playGame.shipsPlaced = true;
 						this.playGame.p1.shipcount = this.shipNum;
@@ -260,7 +258,7 @@ let display = {
 				}
 				else
 					GameConsole.write("You cannot place a ship on that square.", true);
-			}
+				}
 		});
 
 		return grid_box_ref;
@@ -274,7 +272,7 @@ let display = {
 	},
 
 	/**
-	 * show flip botton
+	 * show flip button
 	 */
 	showFlipBtn: function() {
 		this.flip_ship_btn.style.display = "block";
@@ -456,7 +454,6 @@ let display = {
 	 * @return {number} num1+num2
 	 */
 	parseID: function(num) {
-		console.log(num[1] + " " + num[2]);
 		return [parseInt(num[1]),parseInt(num[2])];
 	},
 
@@ -527,12 +524,12 @@ let player = function () {
 	{
 		if (this.ship[row][col] === 'S') {
 				this.ship[row][col] = 'X';
-				GameConsole.write("Hit at (" + (row+1) + ' ' + c_to_l[col] + ").", false);
+				GameConsole.write("Hit at " + c_to_l[col] + (row+1) + "!", false);
 				return (true);
 		}
 		else {
 			this.ship[row][col] = 'o';
-			GameConsole.write("Miss at (" + (row+1) + ', ' + c_to_l[col] + ").", false);
+			GameConsole.write("Miss at " + c_to_l[col] + (row+1)  + ".", false);
 			return (false);
 		}
 	};
@@ -582,7 +579,6 @@ let player = function () {
 			this.hits += 1;
 		}
 		else {
-			console.log("here");
 			this.hm[row][col] = 'o';
 			hit = false;
 		}
@@ -625,7 +621,6 @@ let player = function () {
 					}
 					else
 					{
-						console.log("ship out of bounds");
 						checkifempty = 1;
 					}
 
@@ -648,7 +643,6 @@ let player = function () {
 					}
 					else
 					{
-						console.log("ship out of bounds");
 						checkifempty = 1;
 					}
 				}
@@ -697,7 +691,7 @@ let play = function(plr1,plr2,disp) {
 				console.log(row + " " + col);
 				if(this.p1.setdown(this.p1.shipcount,col,row,this.shipOrient) == 0)
 				{
-					console.log("ship placed p1");
+					GameConsole.write("Blue placed a ship at a secret location.");
 					placed = true;
 					this.p1.shipcount--;
 				}
@@ -711,22 +705,13 @@ let play = function(plr1,plr2,disp) {
 			{
 				if(this.p2.setdown(this.p2.shipcount,col,row,this.shipOrient) == 0)
 				{
-					console.log("ship placed p2");
+					GameConsole.write("Red placed a ship at a secret location.");
 					placed = true;
 					this.p2.shipcount--;
 				}
 			}
 		}
 		return placed;
-	};
-
-	/**
-	 * start of game
-	 */
-	this.gamestart=function(){
-		player ();
-		alert("Let the battle commence"); // show on some display element
-		this.midgame();
 	};
 
 	/**
@@ -740,28 +725,25 @@ let play = function(plr1,plr2,disp) {
 		{
 			if(this.playerTurn)
 			{
+				GameConsole.write("Blue fired!");
 				if(this.p1.fire(this.p2, row, col))
 				{
-					console.log("p1 has gone");
 					this.display.blue_big_grid.querySelector("#e" + row + "" + col).classList.add("hit-ship");
 				}
 				else
 				{
-					console.log("p1 has gone");
 					this.display.blue_big_grid.querySelector("#e" + row + "" + col).classList.add("miss-ship");
-					console.log("here I am");
 				}
 			}
 			if(!this.playerTurn)
 			{
+				GameConsole.write("Red fired!");
 				if(this.p2.fire(this.p1, row, col))
 				{
-					console.log("p2 has gone");
 					display.red_big_grid.querySelector("#e" + row + "" + col).classList.add("hit-ship");
 				}
 				else
 				{
-					console.log("p2 has gone");
 					this.display.red_big_grid.querySelector("#e" + row + "" + col).classList.add("miss-ship");
 				}
 			}
@@ -774,11 +756,10 @@ let play = function(plr1,plr2,disp) {
 	 * end of game
 	 */
 	this.endgame=function(){
-		alert("GAME OVER");
 		if (this.p1.gameover() == true){
-			alert("Player 1 WINS!!!!!!!!");
+			GameConsole.write("Game over. Blue wins!", true);
 		}else{
-			alert("Player 2 WINS!!!!!!!!");
+			GameConsole.write("Game over. Red wins!", true)
 		}
 	}
 };
@@ -786,12 +767,3 @@ let play = function(plr1,plr2,disp) {
 let player1 = new player;
 let player2 = new player;
 display.playGame = new play(player1,player2,display);
-
-// in the grid cell's onClick eventListeners
-/* if(!play.gameStart) {
-	if(play.turn)
-	{
-		displa
-		play.placeShip
-
-*/

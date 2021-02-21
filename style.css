@@ -56,6 +56,8 @@ button {
 #console-row {
     border-top: thin solid black;
     border-bottom: thin solid black;
+    width: 60%;
+    margin: auto;
 }
 
 #main-row {
@@ -120,4 +122,12 @@ table td {
 
 .big-grid .grid-box.hover {
     background-color: lightcoral;
+}
+
+ul li {
+    margin: 2px;
+}
+
+.game-msg {
+    background-color: lightgreen;
 }
