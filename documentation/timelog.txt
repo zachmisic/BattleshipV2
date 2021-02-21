@@ -39,24 +39,20 @@ total time: 690 min
 Becky:
 2/14 18:55-20:20
  *learning basics of javascript
- *85 min
 2/15 20:00-20:40
  *learning functions, methods, objects of javascipt
- *40 min
 2/17 12:00-1:00
  *reading through codes
  *trying to figure out push/pull
- *60 min
 2/17 22:30-23:00
  * writing player function
- *30 min
 2/19 21:00-22:30
  *installing jsdoc, watching video tutorials, resolve installing issue
- *90 min
-2/20 1:10-2:50, 9:10-10:00
+2/20 13:10-14:50, 21:10-22:00
  * documentations
- * 100 min
-total time: 405 min
+2/21 1:10-1:30
+ * documentations
+
 
 
 
