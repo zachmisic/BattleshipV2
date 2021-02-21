@@ -39,7 +39,7 @@ let display = {
 
 	/**
 	*Sets event listeners for the elements existing when the page is loaded, e.i. not the grids.
-	 */
+	*/
 	setEventListeners: function() {
 		this.start_btn.addEventListener("click", () => {
 			for(let i=0; i < this.ship_selectors.length; i++)
@@ -113,7 +113,7 @@ let display = {
 
 	/**
 	*Sets event listeners on a given box.
-	*@param {type} grid_box_ref
+	*@param {object} grid_box_ref
 	*/
 	setBoxEventListeners: function(grid_box_ref) {
 		grid_box_ref.addEventListener("mouseover", () => {
@@ -281,7 +281,7 @@ let display = {
 
 	/**
 	 * Initializes a grid given a node of a table element. Only called once per table, unless you want to reset it.
-	 * @param {type} table_ref
+	 * @param {object} table_ref
 	 */
 	initGrid: function(table_ref) {
 		let headrow = document.createElement('tr');
@@ -345,8 +345,8 @@ let display = {
 
 	/**
 	 * draw board
-	 * @param {display} table_ref
-	 * @param {type} board
+	 * @param {object} table_ref
+	 * @param {object} board
 	 */
 	drawBoard: function(table_ref,board)
 	{ //expand on this
@@ -387,6 +387,7 @@ let display = {
 
 /**
  * establish player class
+ * @class player
  */
 let player = function () {
 	this.hm = [];
@@ -399,7 +400,7 @@ let player = function () {
 	 * take user input and react
 	 * @param {number} col - columns
 	 * @param {number} row - rows
-	 * @param {boolen} - return if hit, false if not
+	 * @return {boolen}  return if hit, false if not
 	 */
 	this.incoming = function (col, row)
 	{	
@@ -443,8 +444,8 @@ let player = function () {
 	};
 
 	/**
-	 * fire
-	 * @param {type} other
+	 * firing the ships, return if hit or not
+	 * @param {object} other - other player input
 	 * @param {number} row -rows
 	 * @param {number} col - columns
 	 * @return {boolean} hit
@@ -468,9 +469,9 @@ let player = function () {
 	};
 
 	/**
-	 * setdown
-	 * @param {number} length
-	 * @param {number} col
+	 * setting down the ships
+	 * @param {number} length 
+	 * @param {number} col 
 	 * @param {number} row
 	 * @param {type} vert
 	 * @return {boolean} check if empty
