@@ -24,12 +24,12 @@ Karen:
 2/17 17:20-17:30
   * code translation
   * 10 min
-2/19 15:30-22:00
+2/19 15:30-20:00
   * Jsdoc research 
-  * 390 min
+  * 270 min
 2/20 12:00-15:20
   * Doing documentation
-  * 200 min
+  * 570 min
 total time: 690 min
 
 
