@@ -379,7 +379,7 @@ let player = function () {
 	 * take user input and react
 	 * @param {number} col - columns
 	 * @param {number} row - rows
-	 * @param {boolen} - reture if hit, false if not
+	 * @param {boolen} - return if hit, false if not
 	 */
 	this.incoming = function (col, row) {
 		if (this.ship[row][col] == 'S') {
