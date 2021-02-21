@@ -125,7 +125,7 @@ let display = {
 				this.showBlueSmallGrid();
 				this.showFlipBtn();
 				GameConsole.show();
-				GameConsole.write("Blue, place your ships on the left grid.", true);
+				GameConsole.write("Blue, place your ships on the left grid. Your ship will extend down or rightward from the box you click.", true);
 			}
 			else
 			{
@@ -716,7 +716,7 @@ let play = function(plr1,plr2,disp) {
 				}
 				if(this.p1.shipcount === 0)// catches the last ship placement and switches boards
 				{
-					GameConsole.write("Red, place your ships on the left grid.", true);
+					GameConsole.write("Red, place your ships on the left grid. Your ship will extend down or rightward from the box you click.", true);
 					this.display.hideBlueBigGrid();
 					this.display.showRedBigGrid();
 				}
