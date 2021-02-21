@@ -7,11 +7,12 @@
 	<body>
 		<div id="info-row" class="row">
 			<h1>Battleship!</h1>
-			<button id="reset">Reset</button>
-			<button id="orientation">Turn Ship Horizontal</button>
-			<button id="start">Start</button>
+			<div class="row">
+				<button id="reset">Reset</button>
+				<button id="orientation">Turn Ship Horizontal</button>
+				<button id="start">Start</button>
+			</div>
 		</div>
-
 		<div id="main-row" class="row">
 			<div id="start-menu" class="column">
 				<h1>Choose number of ships</h1>
@@ -41,17 +42,39 @@
 							<h1>5</h1>
 						</div>
 					</div>
+					<div id="six-ship">
+						<div class="ship-sel row">
+							<h1>6</h1>
+						</div>
+					</div>
 				</div>
 			</div>
 
-			<table id="redBigGrid" class="big-grid"></table>
-			<table id="redSmallGrid" class="small-grid"></table>
-			<table id="blueBigGrid" class="big-grid"></table>
-			<table id="blueSmallGrid" class="small-grid"></table>
+			<div class="column text-mid" id="redBigContainer">
+				<h1>Red Targets</h1>
+				<table id="redBigGrid" class="big-grid"></table>
+			</div>
+			<div class="column text-mid" id="redSmallContainer">
+				<h1>Red Ships</h1>
+				<table id="redSmallGrid" class="small-grid"></table>
+			</div>
+			<div class="column text-mid" id="blueBigContainer">
+				<h1 class="text-mid">Blue Targets</h1>
+				<table id="blueBigGrid" class="big-grid"></table>
+			</div>
+			<div class="column text-mid" id="blueSmallContainer">
+				<h1>Blue Ships</h1>
+				<table id="blueSmallGrid" class="small-grid"></table>
+			</div>
+
+
 		</div>
 
-		<span id = "check" style = "position: absolute; top: 0; left: 680;"></span>
+		<div id="console-row" class="row">
+			<h3 class="text-mid">Console</h3>
+			<ul id="console-messages"></ul>
+		</div>
+
 		<script src = "script.js"></script>
 	</body>
-	
 </html>

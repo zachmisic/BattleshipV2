@@ -14,6 +14,11 @@ Karen:
 2 hr - documentation 
 total = 10 hrs
 
+Alex Gisi:
+1 hr - team meetings
+3 hr - coding
+1 hr - bugfixing/merging code
+
 ___________________________________________________________________________________________________________________________________
 
 Actual time to complete: 
@@ -78,7 +83,17 @@ Alex Jones:
  * simplifying the player class, better usability from front end
 total= 6 HR 45 Min
 
-
-
-
-
+Alex Gisi
+2/15 45 Min
+ * Team meeting and studying requirements
+2/17 1 hr
+ * Programmed display and added CSS
+2/18 1 hr
+ * Improved display style
+2/21 3 hr
+ * Added sixth ship option
+ * Added game console
+ * Fixed the fact that the small grid could be clicked
+ * Added labels to the grids
+ * Fixed the reset functionality
+ * Made the display more aesthetic by adding padding and making the small grids bigger
