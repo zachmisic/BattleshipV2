@@ -1,10 +1,20 @@
 Estimated time to complete:
-  *Team meetings: 150 min
+
+Team meetings: 150 min
+
 Becky:
-2 hr-learning javascript
-3 hr-coding
-1 hr-documentation
-total-6 hr
+2 hr - learning javascript
+3 hr - coding
+1 hr - documentation
+total = 6 hr
+
+Karen: 
+3 hr - learning JavaScript
+5 hr - coding 
+2 hr - documentation 
+total = 10 hrs
+
+___________________________________________________________________________________________________________________________________
 
 Actual time to complete: 
 
@@ -17,7 +27,7 @@ Team meetings (every member attended):
   * 85 min
 2/17 15:00-15:30
   * 30 min
-total time: 165 min
+total = 165 min
 
 Karen: 
 2/16 22:40-23:00 
