@@ -68,7 +68,9 @@ Becky:
  * documentations
 2/21 1:10-1:30
  * documentations
-total=475 min
+2/21 6:00-7:00
+ *bug fix
+total=535 min
 
 Alex Jones:
 2/8 2 HR 
