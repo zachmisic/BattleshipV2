@@ -749,6 +749,10 @@ let play = function(plr1,plr2,disp) {
 				if(this.p1.fire(this.p2, row, col))
 				{
 					this.display.blue_big_grid.querySelector("#e" + row + "" + col).classList.add("hit-ship");
+					if (this.p1.gameover())
+					{
+						this.endgame();
+					}
 				}
 				else
 				{
@@ -761,6 +765,10 @@ let play = function(plr1,plr2,disp) {
 				if(this.p2.fire(this.p1, row, col))
 				{
 					display.red_big_grid.querySelector("#e" + row + "" + col).classList.add("hit-ship");
+					if (this.p2.gameover())
+					{
+						this.endgame();
+					}
 				}
 				else
 				{
@@ -768,8 +776,6 @@ let play = function(plr1,plr2,disp) {
 				}
 			}
 		}
-		else
-			this.endgame();
 	};
 
 	/**
