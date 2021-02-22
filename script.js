@@ -23,8 +23,8 @@ let GameConsole = {
 	 * Write a new message to the console.
 	 * @memberOf GameConsole
 	 * @function write
-	 * @param {string} new_text Text of message.
-	 * @param {boolean} is_instruction Indicates whether the message should be displayed as an instruction to the players.
+	 * @param {string} new_text - Text of message.
+	 * @param {boolean} is_instruction - Indicates whether the message should be displayed as an instruction to the players.
 	 */
 	write: function(new_text, is_instruction) {
 		let msg = new_text;
@@ -446,7 +446,7 @@ let display = {
 	},
 
 	/**
-	 * hide all
+	 * hide all visual displays
 	 * @memberOf display
 	 * @function hidAll
 	 */
@@ -463,7 +463,7 @@ let display = {
 	},
 
 	/**
-	 * reset
+	 * reset display
 	 * @memberOf display
 	 * @function reset
 	 */
@@ -478,7 +478,7 @@ let display = {
 	 * Initializes a grid given a node of a table element. Only called once per table, unless you want to reset it.
 	 * @memberOf display
 	 * @function initGrid
-	 * @param {object} table_ref
+	 * @param {object} table_ref - reference table
 	 */
 	initGrid: function(table_ref) {
 		let headrow = document.createElement('tr');
@@ -532,8 +532,8 @@ let display = {
 	 * parseID
 	 * @global
 	 * @function parseID
-	 * @param {number} num
-	 * @return {number} num1+num2
+	 * @param {number} num - number
+	 * @return {number} - the sum of num1 and num2
 	 */
 	parseID: function(num) {
 		return [parseInt(num[1]),parseInt(num[2])];
@@ -543,7 +543,7 @@ let display = {
 	 * draw board
 	 * @global
 	 * @function drawBoard
-	 * @param {object} table_ref
+	 * @param {object} table_ref - table of reference
 	 * @param {object} board
 	 */
 	drawBoard: function(table_ref,board){ //expand on this
@@ -562,9 +562,9 @@ let display = {
 	/**
 	 * Clear visual display of colors.
 	 * @function clearBoard
-	 * @global
-	 * @param table_ref Table holding ships.
-	 * @param board Array representation of the board from the game class.
+	 * @memberOf display
+	 * @param table_ref - Table holding ships.
+	 * @param board - Array representation of the board from the game class.
 	 */
 	clearBoard: function(table_ref,board){
 		for(let i=0;i<10;i++){
@@ -585,7 +585,7 @@ let display = {
 // display.drawMiniMap();
 
 /**
- * establish player function
+ * establish player class
  * @class player
  */
 let player = function () {
@@ -601,7 +601,7 @@ let player = function () {
 	 * @function incoming
 	 * @param {number} col - columns
 	 * @param {number} row - rows
-	 * @return {boolean}  return if hit, false if not
+	 * @return {boolean} - return if hit, false otherwise
 	 */
 	this.incoming = function (col, row){
 		if (this.ship[row][col] === 'S') {
@@ -655,7 +655,7 @@ let player = function () {
 	 * @param {object} other - other player input
 	 * @param {number} row -rows
 	 * @param {number} col - columns
-	 * @return {boolean} hit
+	 * @return {boolean} - hit
 	 */
 	this.fire=function(other, row, col){
 		let hit = false;
@@ -678,11 +678,11 @@ let player = function () {
 	 * setting down the ships
 	 * @memberOf player
 	 * @function setDown
-	 * @param {number} length
-	 * @param {number} col
-	 * @param {number} row
-	 * @param {string} vert
-	 * @return {boolean} check if empty
+	 * @param {number} length - length of ship
+	 * @param {number} col - column
+	 * @param {number} row - row
+	 * @param {string} vert - vertical
+	 * @return {boolean} - check if empty
 	 */
 	this.setdown=function(length, col, row, vert){
 		let checkifempty = 0;
@@ -770,7 +770,7 @@ let play = function(plr1,plr2,disp) {
 	 * place ship is called when a grid-box is clicked and shipsPlaced is equal to false
 	 * @memberOf play
 	 * @function placeship
-	 * @param {number} id
+	 * @param {number} id - identification
 	 * @return {boolean} if placed return true, else turn false
 	*/
 	this.placeShip = function(id) {
