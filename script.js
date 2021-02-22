@@ -3,6 +3,8 @@ const c_to_l = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
 /**
 * initialize initial display
+* @global
+* @function window.onload
 */
 window.onload = function() {
 	display.init();
@@ -10,7 +12,7 @@ window.onload = function() {
 
 /**
  * The console gives players info about the game via text.
- * @class
+ * @class GameConsole
  */
 let GameConsole = {
 	row: document.getElementById("console-row"),
@@ -19,8 +21,10 @@ let GameConsole = {
 
 	/**
 	 * Write a new message to the console.
-	 * @param new_text Text of message.
-	 * @param is_instruction Indicates whether the message should be displayed as an instruction to the players.
+	 * @memberOf GameConsole
+	 * @function write
+	 * @param {string} new_text Text of message.
+	 * @param {boolean} is_instruction Indicates whether the message should be displayed as an instruction to the players.
 	 */
 	write: function(new_text, is_instruction) {
 		let msg = new_text;
@@ -43,6 +47,8 @@ let GameConsole = {
 
 	/**
 	 * Remove the text from the console.
+	 * @memberOf GameConsole
+	 * @function clearText
 	 */
 	clearText: function() {
 		let messages = this.message_list.childNodes;
@@ -53,6 +59,8 @@ let GameConsole = {
 
 	/**
 	 * Remove console from screen.
+	 * @memberOf GameConsole
+	 * @function hide
 	 */
 	hide: function() {
 		this.row.style.display = 'none';
@@ -60,6 +68,8 @@ let GameConsole = {
 
 	/**
 	 * Show console on screen.
+	 * @memberOf GameConsole
+	 * @function show
 	 */
 	show: function() {
 		this.row.style.display = 'block';
@@ -68,6 +78,7 @@ let GameConsole = {
 
 /**
  * The display handles all visual representations needed for the game.
+ * @class display
  */
 let display = {
 	playGame: "",
@@ -96,6 +107,8 @@ let display = {
 
 	/**
 	* Set event listeners and create grids.
+	* @memberOf display
+	* @function init
 	*/
 	init: function() {
 		this.reset();
@@ -108,6 +121,8 @@ let display = {
 
 	/**
 	* Sets event listeners for the elements existing when the page is loaded, i.e. not the grids.
+	* @memberOf display
+	* @function setEventListeners
 	*/
 	setEventListeners: function() {
 		this.start_btn.addEventListener("click", () => {
@@ -184,9 +199,11 @@ let display = {
 	},
 
 	/**
-	*Sets event listeners on a given box.
-	*@param {object} grid_box_ref
-	*@return {object} grid_box_ref
+	* Sets event listeners on a given box.
+	* @memberOf display
+	* @function setBoxEventListeners
+	* @param {object} grid_box_ref
+	* @return {object} grid_box_ref
 	*/
 	setBoxEventListeners: function(grid_box_ref) {
 
@@ -278,6 +295,8 @@ let display = {
 
 	/**
 	 * hide flip button
+	 * @memberOf display
+	 * @function hideFlipBtn
 	 */
 	hideFlipBtn: function() {
 		this.flip_ship_btn.style.display = "none";
@@ -285,20 +304,26 @@ let display = {
 
 	/**
 	 * show flip button
+	 * @memberOf display
+	 * @function showFlipBtn
 	 */
 	showFlipBtn: function() {
 		this.flip_ship_btn.style.display = "block";
 	},
 
 	/**
-	 * hide rest button
+	 * hide reset button
+	 * @memberOf display
+	 * @function hideResetBtn
 	 */
 	hideResetBtn: function() {
 		this.reset_btn.style.display = "none";
 	},
 
 	/**
-	 * show rest button
+	 * show reset button
+	 * @memberOf display
+	 * @function showResetBtn
 	 */
 	showResetBtn: function() {
 		this.reset_btn.style.display = "block";
@@ -306,6 +331,8 @@ let display = {
 
 	/**
 	 * hide start button
+	 * @memberOf display
+	 * @function hideStartBtn
 	 */
 	hideStartBtn: function() {
 		this.start_btn.style.display = "none";
@@ -313,6 +340,8 @@ let display = {
 
 	/**
 	 * show start button
+	 * @memberOf display
+	 * @function showStartBtn
 	 */
 	showStartBtn: function() {
 		this.start_btn.style.display = "block";
@@ -320,6 +349,8 @@ let display = {
 
 	/**
 	 * hide start menu
+	 * @memberOf display
+	 * @function hideStartMenu
 	 */
 	hideStartMenu: function() {
 		this.start_menu.style.display = "none";
@@ -327,21 +358,27 @@ let display = {
 
 	/**
 	 * show start menu
+	 * @memberOf display
+	 * @function showStartMenu
 	 */
 	showStartMenu: function() {
 		this.start_menu.style.display = "block";
 	},
 
-		/**
-		 * hide red big grid
-		 */
+	/**
+	 * hide big red grid
+	 * @memberOf display
+	 * @function hideRedBigGrid
+	 */
 	hideRedBigGrid: function() {
 		this.red_big_con.style.display = "none";
 		this.red_big_grid.style.display = "none";
 	},
 
 	/**
-	 * show red big grid
+	 * show big red grid
+	 * @memberOf display
+	 * @function showRedBigGrid
 	 */
 	showRedBigGrid: function() {
 		this.red_big_con.style.display = "flex";
@@ -350,6 +387,8 @@ let display = {
 
 	/**
 	 * show red small grid
+	 * @memberOf display
+	 * @function showRedSmallGrid
 	 */
 	showRedSmallGrid: function() {
 		this.red_small_con.style.display = "flex";
@@ -357,7 +396,9 @@ let display = {
 	},
 
 	/**
-	 * show red small grid
+	 * hide red small grid
+	 * @memberOf display
+	 * @function hideRedSmallGrid
 	 */
 	hideRedSmallGrid: function () {
 		this.red_small_con.style.display = "none";
@@ -365,7 +406,9 @@ let display = {
 	},
 
 	/**
-	 * hide blue big grid
+	 * hid blue big grid
+	 * @memberOf display
+	 * @function hideBlueBigGrid
 	 */
 	hideBlueBigGrid: function() {
 		this.blue_big_con.style.display = "none";
@@ -373,7 +416,9 @@ let display = {
 	},
 
 	/**
-	 * show blue big grid
+	 * show big blue grid
+	 * @memberOf display
+	 * @function showBlueBigGrid
 	 */
 	showBlueBigGrid: function() {
 		this.blue_big_con.style.display = "flex";
@@ -382,6 +427,8 @@ let display = {
 
 	/**
 	 * hide blue small grid
+	 * @memberOf display
+	 * @function hideBlueSmallGrid
 	 */
 	hideBlueSmallGrid: function() {
 		this.blue_small_con.style.display = "none";
@@ -390,6 +437,8 @@ let display = {
 
 	/**
 	 * show blue small grid
+	 * @memberOf display
+	 * @function ShowBlueSmallGrid
 	 */
 	showBlueSmallGrid: function() {
 		this.blue_small_con.style.display = "flex";
@@ -398,6 +447,8 @@ let display = {
 
 	/**
 	 * hide all
+	 * @memberOf display
+	 * @function hidAll
 	 */
 	hideAll: function() {
 		this.hideStartMenu();
@@ -413,6 +464,8 @@ let display = {
 
 	/**
 	 * reset
+	 * @memberOf display
+	 * @function reset
 	 */
 	reset: function() {
 		this.hideAll();
@@ -423,6 +476,8 @@ let display = {
 
 	/**
 	 * Initializes a grid given a node of a table element. Only called once per table, unless you want to reset it.
+	 * @memberOf display
+	 * @function initGrid
 	 * @param {object} table_ref
 	 */
 	initGrid: function(table_ref) {
@@ -475,6 +530,8 @@ let display = {
 
 	/**
 	 * parseID
+	 * @global
+	 * @function parseID
 	 * @param {number} num
 	 * @return {number} num1+num2
 	 */
@@ -484,15 +541,14 @@ let display = {
 
 	/**
 	 * draw board
+	 * @global
+	 * @function drawBoard
 	 * @param {object} table_ref
 	 * @param {object} board
 	 */
-	drawBoard: function(table_ref,board)
-	{ //expand on this
-		for(let i=0;i<10;i++)
-		{
-			for(let j=0;j<10;j++)
-			{
+	drawBoard: function(table_ref,board){ //expand on this
+		for(let i=0;i<10;i++){
+			for(let j=0;j<10;j++){
 				if(board[i][j] == 'S')
 					table_ref.querySelector("#e" + i + "" + j).classList.add("has-ship");
 				if(board[i][j] == 'X')
@@ -505,15 +561,14 @@ let display = {
 
 	/**
 	 * Clear visual display of colors.
+	 * @function clearBoard
+	 * @global
 	 * @param table_ref Table holding ships.
 	 * @param board Array representation of the board from the game class.
 	 */
-	clearBoard: function(table_ref,board)
-	{
-		for(let i=0;i<10;i++)
-		{
-			for(let j=0;j<10;j++)
-			{
+	clearBoard: function(table_ref,board){
+		for(let i=0;i<10;i++){
+			for(let j=0;j<10;j++){
 				if(board[i][j] == 'S')
 					table_ref.querySelector("#e" + i + "" + j).classList.remove("has-ship");
 				if(board[i][j] == 'X')
@@ -531,6 +586,7 @@ let display = {
 
 /**
  * establish player function
+ * @class player
  */
 let player = function () {
 	this.hm = [];
@@ -541,12 +597,13 @@ let player = function () {
 
 	/**
 	 * take user input and react
+	 * @memberOf player
+	 * @function incoming
 	 * @param {number} col - columns
 	 * @param {number} row - rows
 	 * @return {boolean}  return if hit, false if not
 	 */
-	this.incoming = function (col, row)
-	{
+	this.incoming = function (col, row){
 		if (this.ship[row][col] === 'S') {
 				this.ship[row][col] = 'X';
 				GameConsole.write("Hit at " + c_to_l[col] + (row+1) + "!", false);
@@ -561,6 +618,8 @@ let player = function () {
 
 	/**
 	 * gameover
+	 * @memberOf player
+	 * @function gameover
 	 */
 	this.gameover= function(){
 		return (this.hits == this.hitstowin);
@@ -568,6 +627,8 @@ let player = function () {
 
 	/**
 	 * setup game grid and ship counts
+	 * @memebrOf player
+	 * @function setup
 	 */
 	this.setup = function() {
 		for (let i = 0; i < 10; i++) {
@@ -589,6 +650,8 @@ let player = function () {
 
 	/**
 	 * firing the ships, return if hit or not
+	 * @memberOf player
+	 * @function fire
 	 * @param {object} other - other player input
 	 * @param {number} row -rows
 	 * @param {number} col - columns
@@ -613,6 +676,8 @@ let player = function () {
 
 	/**
 	 * setting down the ships
+	 * @memberOf player
+	 * @function setDown
 	 * @param {number} length
 	 * @param {number} col
 	 * @param {number} row
@@ -686,6 +751,7 @@ let player = function () {
 
 /**
  * play function that drives the game
+ * @class play
  * @param {object} plr1 -player 1 object
  * @param {object} plr2 - player 2 object
  * @param {object} disp - display object
@@ -702,6 +768,8 @@ let play = function(plr1,plr2,disp) {
 
 	/**
 	 * place ship is called when a grid-box is clicked and shipsPlaced is equal to false
+	 * @memberOf play
+	 * @function placeship
 	 * @param {number} id
 	 * @return {boolean} if placed return true, else turn false
 	*/
@@ -742,6 +810,8 @@ let play = function(plr1,plr2,disp) {
 
 	/**
    	 * middle of the game
+		 * @memberOf play
+		 * @function midgame
   	 */
 	this.midgame=function(id){
 		let row = id[0];
@@ -786,6 +856,8 @@ let play = function(plr1,plr2,disp) {
 
 	/**
 	 * end of game
+	 * @memberOf play
+	 * @function endgame
 	 */
 	this.endgame=function(){
 		if (this.p1.gameover() == true){
@@ -796,6 +868,7 @@ let play = function(plr1,plr2,disp) {
 		setTimeout(() => { this.display.noClick = true; }, 3001);
 	}
 };
+
 
 let player1 = new player;
 let player2 = new player;
