@@ -182,6 +182,7 @@ let display = {
 	/**
 	*Sets event listeners on a given box.
 	*@param {object} grid_box_ref
+	*@return {object} grid_box_ref
 	*/
 	setBoxEventListeners: function(grid_box_ref) {
 
