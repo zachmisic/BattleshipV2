@@ -1,12 +1,16 @@
 'use strict';
 const c_to_l = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
+/**
+* initialize initial display
+*/
 window.onload = function() {
 	display.init();
 };
 
 /**
  * The console gives players info about the game via text.
+ * @class
  */
 let GameConsole = {
 	row: document.getElementById("console-row"),
@@ -217,7 +221,7 @@ let display = {
 					this.noClick = true;
 					if(this.playGame.playerTurn)
 					{
-						setTimeout(() => 
+						setTimeout(() =>
 						{
 							this.hideBlueBigGrid();
 							this.hideBlueSmallGrid();
@@ -225,12 +229,12 @@ let display = {
 							this.showRedBigGrid();
 							this.showRedSmallGrid();
 							this.noClick = false;
-							
+
 						}, 3000);
 					}
 					else
 					{
-						setTimeout( () => { 
+						setTimeout( () => {
 							this.hideRedBigGrid();
 							this.hideRedSmallGrid();
 							this.drawBoard(this.blue_small_grid,this.playGame.p1.ship);
@@ -241,12 +245,12 @@ let display = {
 					}
 					this.playGame.playerTurn = !this.playGame.playerTurn;
 				}
-				
+
 			}
 			else
 			{
 				if(this.playGame.placeShip(this.parseID(grid_box_ref.id))) // calls the placeShip function with the clicked cell's id
-				{					
+				{
 					grid_box_ref.classList.add("has-ship"); // if it has a ship it is assigned the has-ship class
 					this.drawBoard(this.blue_big_grid,this.playGame.p1.ship);
 					this.drawBoard(this.red_big_grid,this.playGame.p2.ship);
@@ -609,8 +613,8 @@ let player = function () {
 
 	/**
 	 * setting down the ships
-	 * @param {number} length 
-	 * @param {number} col 
+	 * @param {number} length
+	 * @param {number} col
 	 * @param {number} row
 	 * @param {string} vert
 	 * @return {boolean} check if empty
