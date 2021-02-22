@@ -627,7 +627,7 @@ let player = function () {
 
 	/**
 	 * setup game grid and ship counts
-	 * @memebrOf player
+	 * @memberOf player
 	 * @function setup
 	 */
 	this.setup = function() {
