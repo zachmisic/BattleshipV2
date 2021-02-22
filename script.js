@@ -202,7 +202,7 @@ let display = {
 	* Sets event listeners on a given box.
 	* @memberOf display
 	* @function setBoxEventListeners
-	* @param {object} grid_box_ref
+	* @param {object} grid_box_ref grid box reference
 	* @return {object} grid_box_ref
 	*/
 	setBoxEventListeners: function(grid_box_ref) {
@@ -544,7 +544,7 @@ let display = {
 	 * @memberOf display
 	 * @function drawBoard
 	 * @param {object} table_ref - table of reference
-	 * @param {object} board
+	 * @param {object} board game board
 	 */
 	drawBoard: function(table_ref,board){ //expand on this
 		for(let i=0;i<10;i++){
@@ -563,8 +563,8 @@ let display = {
 	 * Clear visual display of colors.
 	 * @function clearBoard
 	 * @memberOf display
-	 * @param table_ref - Table holding ships.
-	 * @param board - Array representation of the board from the game class.
+	 * @param {object} table_ref - Table holding ships.
+	 * @param {array} board - Array representation of the board from the game class.
 	 */
 	clearBoard: function(table_ref,board){
 		for(let i=0;i<10;i++){
@@ -681,7 +681,7 @@ let player = function () {
 	 * @param {number} length - length of ship
 	 * @param {number} col - column
 	 * @param {number} row - row
-	 * @param {string} vert - vertical
+	 * @param {string} vert - if ship is vertical
 	 * @return {boolean} - check if empty
 	 */
 	this.setdown=function(length, col, row, vert){
