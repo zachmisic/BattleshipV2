@@ -12,12 +12,13 @@ Karen:
 3 hr - learning JavaScript
 5 hr - coding 
 2 hr - documentation 
-total = 10 hrs
+total = 10 hr
 
 Alex Gisi:
 1 hr - team meetings
 3 hr - coding
 1 hr - bugfixing/merging code
+total = 5 hr
 
 ___________________________________________________________________________________________________________________________________
 
@@ -75,18 +76,18 @@ total = 535 min
 Alex Jones:
 2/8 2 HR 
  * writing rapid prototype in c++
-2/9 30 Min
+2/9 30 min
  * Planning with Jake and Alex
-2/11 45 Min
+2/11 45 min
  * Planning with Jake, Becky, and Karen
-2/16 2 HR
+2/16 2 hr
  * transferring the back end code form c++ to javascript
-2/19 1 HR 30 Min
+2/19 1 hr 30 min
  * simplifying the player class, better usability from front end
-total = 6 HR 45 Min
+total = 6 hr 45 min
 
 Alex Gisi
-2/15 45 Min
+2/15 45 min
  * Team meeting and studying requirements
 2/17 1 hr
  * Programmed display and added CSS
@@ -99,3 +100,4 @@ Alex Gisi
  * Added labels to the grids
  * Fixed the reset functionality
  * Made the display more aesthetic by adding padding and making the small grids bigger
+totl = 5 hr 45 min
