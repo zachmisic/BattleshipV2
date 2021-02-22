@@ -55,49 +55,49 @@ total time = 690 min
 
 Becky:
 2/14 18:55-20:20
- *learning basics of javascript
+  *learning basics of javascript
 2/15 20:00-20:40
- *learning functions, methods, objects of javascipt
+  *learning functions, methods, objects of javascipt
 2/17 12:00-1:00
- *reading through codes
- *trying to figure out push/pull
+  *reading through codes
+  *trying to figure out push/pull
 2/17 22:30-23:00
- * writing player function
+  * writing player function
 2/19 21:00-22:30
- *installing jsdoc, watching video tutorials, resolve installing issue
+  *installing jsdoc, watching video tutorials, resolve installing issue
 2/20 13:10-14:50, 21:10-22:00
- * documentations
+  * documentations
 2/21 1:10-1:30
- * documentations
+  * documentations
 2/21 6:00-7:00
- *bug fix
+  *bug fix
 total = 535 min
 
 Alex Jones:
 2/8 2 HR 
- * writing rapid prototype in c++
+  * writing rapid prototype in c++
 2/9 30 min
- * Planning with Jake and Alex
+  * Planning with Jake and Alex
 2/11 45 min
- * Planning with Jake, Becky, and Karen
+  * Planning with Jake, Becky, and Karen
 2/16 2 hr
- * transferring the back end code form c++ to javascript
+  * transferring the back end code form c++ to javascript
 2/19 1 hr 30 min
- * simplifying the player class, better usability from front end
+  * simplifying the player class, better usability from front end
 total = 6 hr 45 min
 
 Alex Gisi
 2/15 45 min
- * Team meeting and studying requirements
+  * Team meeting and studying requirements
 2/17 1 hr
- * Programmed display and added CSS
+  * Programmed display and added CSS
 2/18 1 hr
- * Improved display style
+  * Improved display style
 2/21 3 hr
- * Added sixth ship option
- * Added game console
- * Fixed the fact that the small grid could be clicked
- * Added labels to the grids
- * Fixed the reset functionality
- * Made the display more aesthetic by adding padding and making the small grids bigger
+  * Added sixth ship option
+  * Added game console
+  * Fixed the fact that the small grid could be clicked
+  * Added labels to the grids
+  * Fixed the reset functionality
+  * Made the display more aesthetic by adding padding and making the small grids bigger
 totl = 5 hr 45 min
