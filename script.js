@@ -530,7 +530,7 @@ let display = {
 
 	/**
 	 * parseID
-	 * @global
+	 * @memberOf display
 	 * @function parseID
 	 * @param {number} num - number
 	 * @return {number} - the sum of num1 and num2
@@ -541,7 +541,7 @@ let display = {
 
 	/**
 	 * draw board
-	 * @global
+	 * @memberOf display
 	 * @function drawBoard
 	 * @param {object} table_ref - table of reference
 	 * @param {object} board
