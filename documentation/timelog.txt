@@ -1,6 +1,6 @@
 Estimated time to complete:
 
-Team meetings: 2 hr 30 min
+Team meetings: 150 min
 
 Becky:
 2 hr - learning javascript
@@ -12,13 +12,18 @@ Karen:
 3 hr - learning JavaScript
 5 hr - coding 
 2 hr - documentation 
-total = 10 hr
+total = 10 hrs
 
 Alex Gisi:
 1 hr - team meetings
 3 hr - coding
 1 hr - bugfixing/merging code
-total = 5 hr
+
+Jake Davies:
+2 hr - team meetings
+5 hr - coding
+2 hr - fixing bugs and polishing
+total = 9 hrs
 
 ___________________________________________________________________________________________________________________________________
 
@@ -33,7 +38,7 @@ Team meetings (every member attended):
   * 85 min
 2/17 15:00-15:30
   * 30 min
-total = 2 hr 45 min
+total = 165 min
 
 Karen: 
 2/16 22:40-23:00 
@@ -51,53 +56,72 @@ Karen:
 2/20 12:00-15:20
   * Doing documentation
   * 570 min
-total time = 11 hr 30 min
+total time: 690 min
 
 Becky:
 2/14 18:55-20:20
-  *learning basics of javascript
+ *learning basics of javascript
 2/15 20:00-20:40
-  *learning functions, methods, objects of javascipt
+ *learning functions, methods, objects of javascipt
 2/17 12:00-1:00
-  *reading through codes
-  *trying to figure out push/pull
+ *reading through codes
+ *trying to figure out push/pull
 2/17 22:30-23:00
-  * writing player function
+ * writing player function
 2/19 21:00-22:30
-  *installing jsdoc, watching video tutorials, resolve installing issue
+ *installing jsdoc, watching video tutorials, resolve installing issue
 2/20 13:10-14:50, 21:10-22:00
-  * documentations
+ * documentations
 2/21 1:10-1:30
-  * documentations
+ * documentations
 2/21 6:00-7:00
-  *bug fix
-total = 8 hr 55 min
+ *bug fix
+total=535 min
 
 Alex Jones:
 2/8 2 HR 
-  * writing rapid prototype in c++
-2/9 30 min
-  * Planning with Jake and Alex
-2/11 45 min
-  * Planning with Jake, Becky, and Karen
-2/16 2 hr
-  * transferring the back end code form c++ to javascript
-2/19 1 hr 30 min
-  * simplifying the player class, better usability from front end
-total = 6 hr 45 min
+ * writing rapid prototype in c++
+2/9 30 Min
+ * Planning with Jake and Alex
+2/11 45 Min
+ * Planning with Jake, Becky, and Karen
+2/16 2 HR
+ * transferring the back end code form c++ to javascript
+2/19 1 HR 30 Min
+ * simplifying the player class, better usability from front end
+total= 6 HR 45 Min
 
 Alex Gisi
-2/15 45 min
-  * Team meeting and studying requirements
+2/15 45 Min
+ * Team meeting and studying requirements
 2/17 1 hr
-  * Programmed display and added CSS
+ * Programmed display and added CSS
 2/18 1 hr
-  * Improved display style
+ * Improved display style
 2/21 3 hr
-  * Added sixth ship option
-  * Added game console
-  * Fixed the fact that the small grid could be clicked
-  * Added labels to the grids
-  * Fixed the reset functionality
-  * Made the display more aesthetic by adding padding and making the small grids bigger
-totl = 5 hr 45 min
+ * Added sixth ship option
+ * Added game console
+ * Fixed the fact that the small grid could be clicked
+ * Added labels to the grids
+ * Fixed the reset functionality
+ * Made the display more aesthetic by adding padding and making the small grids bigger
+ 
+ Jake Davies
+ 2/12 1 hr
+  * Set up clickable grid
+  * Consolidated all functions into script.js
+ 2/13 .5 hr
+  * Added labels for the rows and columns
+ 2/16 1 hr
+  * Added mini map to track status of the current player's ships
+ 2/18 1.5 hr
+  * Set up a loop in the start button's event listener that checks for the selected number of ships, and stores it in the play object
+ 2/20 3 hr
+  * Implimented the place-ship functionality
+  * Fixed an issue where the game wont check for ship collision on the last placed ship
+ 2/21 2 hr
+  * Set up the battle functionality
+  * Fixed an issue where the missed shots weren't appearing
+  * Added a noClick to the board when transitioning boards
+ total = 7 HR 30 MIN
+  
