@@ -149,6 +149,316 @@
     
 
     
+    <h4 class="name" id=".clearBoard"><span class="type-signature">(static) </span>clearBoard<span class="signature">(table_ref, board)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Clear visual display of colors.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>table_ref</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Table holding ships.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>board</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Array representation of the board from the game class.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line562">line 562</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".drawBoard"><span class="type-signature">(static) </span>drawBoard<span class="signature">(table_ref, board)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    draw board
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>table_ref</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">table of reference</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>board</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line542">line 542</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id=".hidAll"><span class="type-signature">(static) </span>hidAll<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
@@ -157,7 +467,7 @@
 
 
 <div class="description">
-    hide all
+    hide all visual displays
 </div>
 
 
@@ -1089,7 +1399,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">reference table</td>
         </tr>
 
     
@@ -1166,6 +1476,165 @@
     
 
     
+    <h4 class="name" id=".parseID"><span class="type-signature">(static) </span>parseID<span class="signature">(num)</span><span class="type-signature"> &rarr; {number}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    parseID
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>num</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">number</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line531">line 531</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - the sum of num1 and num2
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id=".reset"><span class="type-signature">(static) </span>reset<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
@@ -1174,7 +1643,7 @@
 
 
 <div class="description">
-    reset
+    reset display
 </div>
 
 
@@ -2215,13 +2684,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="display.html">display</a></li><li><a href="GameConsole.html">GameConsole</a></li><li><a href="play.html">play</a></li><li><a href="player.html">player</a></li></ul><h3>Global</h3><ul><li><a href="global.html#clearBoard">clearBoard</a></li><li><a href="global.html#drawBoard">drawBoard</a></li><li><a href="global.html#onload">onload</a></li><li><a href="global.html#parseID">parseID</a></li><li><a href="global.html#setup">setup</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="display.html">display</a></li><li><a href="GameConsole.html">GameConsole</a></li><li><a href="play.html">play</a></li><li><a href="player.html">player</a></li></ul><h3>Global</h3><ul><li><a href="global.html#onload">onload</a></li><li><a href="global.html#setup">setup</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Feb 21 2021 22:39:55 GMT-0600 (Central Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Feb 21 2021 23:08:43 GMT-0600 (Central Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
