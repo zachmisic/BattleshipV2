@@ -19,6 +19,12 @@ Alex Gisi:
 3 hr - coding
 1 hr - bugfixing/merging code
 
+Jake Davies:
+2 hr - team meetings
+5 hr - coding
+2 hr - fixing bugs and polishing
+total = 9 hrs
+
 ___________________________________________________________________________________________________________________________________
 
 Actual time to complete: 
@@ -68,7 +74,9 @@ Becky:
  * documentations
 2/21 1:10-1:30
  * documentations
-total=475 min
+2/21 6:00-7:00
+ *bug fix
+total=535 min
 
 Alex Jones:
 2/8 2 HR 
@@ -97,3 +105,23 @@ Alex Gisi
  * Added labels to the grids
  * Fixed the reset functionality
  * Made the display more aesthetic by adding padding and making the small grids bigger
+ 
+ Jake Davies
+ 2/12 1 hr
+  * Set up clickable grid
+  * Consolidated all functions into script.js
+ 2/13 .5 hr
+  * Added labels for the rows and columns
+ 2/16 1 hr
+  * Added mini map to track status of the current player's ships
+ 2/18 1.5 hr
+  * Set up a loop in the start button's event listener that checks for the selected number of ships, and stores it in the play object
+ 2/20 3 hr
+  * Implimented the place-ship functionality
+  * Fixed an issue where the game wont check for ship collision on the last placed ship
+ 2/21 2 hr
+  * Set up the battle functionality
+  * Fixed an issue where the missed shots weren't appearing
+  * Added a noClick to the board when transitioning boards
+ total = 7 HR 30 MIN
+  
