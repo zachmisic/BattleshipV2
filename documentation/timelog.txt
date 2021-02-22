@@ -25,6 +25,14 @@ Jake Davies:
 2 hr - fixing bugs and polishing
 total = 9 hrs
 
+Alex Jones:
+2 hr - coding
+2 hr - team meeting
+2 hr - fixing bugs
+1 hr - learning any new js
+1 hr - personal planning
+total = 8 hrs
+
 ___________________________________________________________________________________________________________________________________
 
 Actual time to complete: 
