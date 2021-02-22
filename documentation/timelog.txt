@@ -50,7 +50,7 @@ Karen:
 2/20 12:00-15:20
   * Doing documentation
   * 570 min
-total time: 690 min
+total time = 690 min
 
 Becky:
 2/14 18:55-20:20
@@ -70,7 +70,7 @@ Becky:
  * documentations
 2/21 6:00-7:00
  *bug fix
-total=535 min
+total = 535 min
 
 Alex Jones:
 2/8 2 HR 
@@ -83,7 +83,7 @@ Alex Jones:
  * transferring the back end code form c++ to javascript
 2/19 1 HR 30 Min
  * simplifying the player class, better usability from front end
-total= 6 HR 45 Min
+total = 6 HR 45 Min
 
 Alex Gisi
 2/15 45 Min
