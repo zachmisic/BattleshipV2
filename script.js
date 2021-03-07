@@ -95,6 +95,7 @@ let play = function(plr1,plr2,disp) {
 	this.shipNum = 0;
 	this.shipOrient = 'V';
 
+
 	/**
 	 * place ship is called when a grid-box is clicked and shipsPlaced is equal to false
 	 * @memberOf play

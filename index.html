@@ -11,6 +11,7 @@
 				<button id="reset">Reset</button>
 				<button id="orientation">Turn Ship Horizontal</button>
 				<button id="start">Start</button>
+				<button id="cont">Continue</button>
 			</div>
 		</div>
 		<div id="main-row" class="row">
@@ -50,6 +51,43 @@
 				</div>
 			</div>
 
+				<div id="game-mode" class="column">
+					<h1>Play 2-player or AI?</h1>
+					<div id="choice-row" class="row">
+						<div id="2-play">
+							<div class="mode-sel row">
+								<h1>Two Player</h1>
+							</div>
+						</div>
+						<div id="AI-row">
+							<div class="mode-sel row">
+								<h1>AI</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="AI-mode" class="column">
+					<h1>What AI mode would you like?</h1>
+					<div id="AIchoice-row" class="row">
+						<div id="Easy">
+							<div class="AImode-sel row">
+								<h1>Easy</h1>
+							</div>
+						</div>
+						<div id="Medium">
+							<div class="AImode-sel row">
+								<h1>Medium</h1>
+							</div>
+						</div>
+						<div id="Hard">
+							<div class="AImode-sel row">
+								<h1>Hard</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			<div class="column text-mid" id="redBigContainer">
 				<h1>Red Targets</h1>
 				<table id="redBigGrid" class="big-grid"></table>
@@ -78,5 +116,6 @@
 		<script src = "display.js"></script>
 		<script src = "player.js"></script>
 		<script src = "script.js"></script>
+		<script src = "AI.js"></script>
 	</body>
 </html>

@@ -18,10 +18,15 @@ let display = {
 	blue_small_con: document.getElementById("blueSmallContainer"),
 
 	start_menu: document.getElementById("start-menu"),
+	game_menu: document.getElementById("game-mode"),
+	AI_menu: document.getElementById("AI-mode"),
 	reset_btn: document.getElementById("reset"),
 	start_btn: document.getElementById("start"),
+	continue_btn: document.getElementById("cont"),
 	flip_ship_btn: document.getElementById("orientation"),
 	ship_selectors: document.getElementsByClassName("ship-sel"),
+	gamemode_selectors: document.getElementsByClassName("mode-sel"),
+	AImode_selectors: document.getElementsByClassName("AImode-sel"),
 
 	noClick: false,
 	gameStart: true, // determines if the game has started or not
@@ -61,20 +66,56 @@ let display = {
 			{
 				this.hideStartBtn();
 				this.showResetBtn();
+				this.showContBtn();
 				this.hideStartMenu();
-				this.showBlueBigGrid();
-				this.showBlueSmallGrid();
-				this.showFlipBtn();
-				GameConsole.show();
-				GameConsole.write("Blue, place your ships on the left grid. Your ship will extend down or rightward from the box you click.", true);
-			}
+				this.showGameMenu();
+				this.continue_btn.addEventListener("click", () => {
+					this.hideGameMenu();
+					for(let i=0; i < this.gamemode_selectors.length; i++)
+					{
+						if(this.gamemode_selectors[i].classList.contains("selected"))
+						{
+							if(i==1){
+								this.showAIMenu();
+								this.continue_btn.addEventListener("click", () => {
+									this.hideAIMenu();
+									for(let i=0; i < this.AImode_selectors.length; i++)
+									{
+										if(this.AImode_selectors[i].classList.contains("selected"))
+										{
+											if(i==0){
+												//play easy AI
+											}
+											else if(i==1){
+												//play medium AI
+											}
+											else if(i==2){
+												//play hard AI
+											}
+										}
+									}
+								})
+							}
+							else{
+									this.hideGameMenu();
+									this.showBlueBigGrid();
+									this.showBlueSmallGrid();
+								this.showFlipBtn();
+									GameConsole.show();
+									GameConsole.write("Blue, place your ships on the left grid. Your ship will extend down or rightward from the box you click.", true);
+								}
+							}
+						}
+					})
+				}
+
 			else
 			{
 				alert("Select a ship count first."); //display this in a text box in display
 			}
 
-
 		});
+	
 
 		this.reset_btn.addEventListener("click", () => {
 			this.reset();
@@ -106,11 +147,59 @@ let display = {
 			});
 		}
 
+		for(let i=0; i < this.gamemode_selectors.length; i++) {
+			this.gamemode_selectors[i].addEventListener("mouseover", () => {
+				this.gamemode_selectors[i].classList.add("hover")
+			});
+			this.gamemode_selectors[i].addEventListener("mouseout", () => {
+				this.gamemode_selectors[i].classList.remove("hover")
+			});
+			this.gamemode_selectors[i].addEventListener("click", () => {
+				// First deselect if any other box was selected.
+				for(let j=0; j < this.gamemode_selectors.length; j++) {
+					if(j !== i) {
+						this.gamemode_selectors[j].classList.remove("selected");
+					}
+				}
+
+				// Now select or deselect depending on state.
+				if(this.gamemode_selectors[i].classList.contains("selected")) {
+					this.gamemode_selectors[i].classList.remove("selected");
+				} else {
+					this.gamemode_selectors[i].classList.add("selected");
+				}
+			});
+		}
+
+		for(let i=0; i < this.AImode_selectors.length; i++) {
+			this.AImode_selectors[i].addEventListener("mouseover", () => {
+				this.AImode_selectors[i].classList.add("hover")
+			});
+			this.AImode_selectors[i].addEventListener("mouseout", () => {
+				this.AImode_selectors[i].classList.remove("hover")
+			});
+			this.AImode_selectors[i].addEventListener("click", () => {
+				// First deselect if any other box was selected.
+				for(let j=0; j < this.AImode_selectors.length; j++) {
+					if(j !== i) {
+						this.AImode_selectors[j].classList.remove("selected");
+					}
+				}
+
+				// Now select or deselect depending on state.
+				if(this.AImode_selectors[i].classList.contains("selected")) {
+					this.AImode_selectors[i].classList.remove("selected");
+				} else {
+					this.AImode_selectors[i].classList.add("selected");
+				}
+			});
+		}
+
 		this.flip_ship_btn.addEventListener("click", () => { // allows the user to orient their ships on the board
 			if(this.flip_ship_btn.innerText == "Turn Ship Horizontal")
 			{
 				this.playGame.shipOrient = 'H';
-				this.flip_ship_btn.innerText = "Turn Ship Verticle";
+				this.flip_ship_btn.innerText = "Turn Ship Vertical";
 			}
 			else
 			{
@@ -270,6 +359,24 @@ let display = {
 	},
 
 	/**
+	 * show continue button
+	 * @memberOf display
+	 * @function showContBtn
+	 */
+	showContBtn: function() {
+		this.continue_btn.style.display = "block";
+	},
+
+	/**
+	 * hide continue button
+	 * @memberOf display
+	 * @function hideContBtn
+	 */
+	hideContBtn: function() {
+		this.continue_btn.style.display = "none";
+	},
+
+	/**
 	 * hide start menu
 	 * @memberOf display
 	 * @function hideStartMenu
@@ -279,12 +386,48 @@ let display = {
 	},
 
 	/**
+	 * hide game menu
+	 * @memberOf display
+	 * @function hideGameMenu
+	 */
+	hideGameMenu: function() {
+		this.game_menu.style.display = "none";
+	},
+
+	/**
+	 * hide AI menu
+	 * @memberOf display
+	 * @function hideAIMenu
+	 */
+	hideAIMenu: function() {
+		this.AI_menu.style.display = "none";
+	},
+
+	/**
 	 * show start menu
 	 * @memberOf display
 	 * @function showStartMenu
 	 */
 	showStartMenu: function() {
 		this.start_menu.style.display = "block";
+	},
+
+	/**
+	 * show game menu
+	 * @memberOf display
+	 * @function showGameMenu
+	 */
+	showGameMenu: function() {
+		this.game_menu.style.display = "block";
+	},
+
+	/**
+	 * show AI menu
+	 * @memberOf display
+	 * @function showAIMenu
+	 */
+	showAIMenu: function() {
+		this.AI_menu.style.display = "block";
 	},
 
 	/**
@@ -370,7 +513,7 @@ let display = {
 	/**
 	 * hide all visual displays
 	 * @memberOf display
-	 * @function hidAll
+	 * @function hideAll
 	 */
 	hideAll: function() {
 		this.hideStartMenu();
@@ -381,6 +524,9 @@ let display = {
 		this.hideStartBtn();
 		this.hideResetBtn();
 		this.hideFlipBtn();
+		this.hideGameMenu();
+		this.hideAIMenu();
+		this.hideContBtn();
 		GameConsole.hide();
 	},
 

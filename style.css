@@ -82,6 +82,42 @@ button {
     background-color: lightsteelblue;
 }
 
+.mode-sel {
+  height: 100px;
+  width: 100px;
+  border-style: solid;
+  border-width: thin;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.mode-sel.hover {
+    transform: scale(1.1);
+}
+
+.mode-sel.selected {
+    transform: scale(1.1);
+    background-color: lightsteelblue;
+}
+
+.AImode-sel {
+  height: 100px;
+  width: 100px;
+  border-style: solid;
+  border-width: thin;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.AImode-sel.hover {
+    transform: scale(1.1);
+}
+
+.AImode-sel.selected {
+    transform: scale(1.1);
+    background-color: lightsteelblue;
+}
+
 .has-ship {
 	background-color: gray;
 }
