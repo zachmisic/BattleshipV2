@@ -23,6 +23,14 @@ button {
 	width: 150px;
 }
 
+#cont {
+  width: 75px;
+}
+
+#special-shot {
+  width: 100px;
+}
+
 .row {
     width: 100%;
     margin: auto;

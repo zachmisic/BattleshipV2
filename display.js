@@ -24,6 +24,7 @@ let display = {
 	start_btn: document.getElementById("start"),
 	continue_btn: document.getElementById("cont"),
 	flip_ship_btn: document.getElementById("orientation"),
+	special_shot_btn: document.getElementById("special-shot"),
 	ship_selectors: document.getElementsByClassName("ship-sel"),
 	gamemode_selectors: document.getElementsByClassName("mode-sel"),
 	AImode_selectors: document.getElementsByClassName("AImode-sel"),
@@ -100,7 +101,7 @@ let display = {
 									this.hideGameMenu();
 									this.showBlueBigGrid();
 									this.showBlueSmallGrid();
-								this.showFlipBtn();
+									this.showFlipBtn();
 									GameConsole.show();
 									GameConsole.write("Blue, place your ships on the left grid. Your ship will extend down or rightward from the box you click.", true);
 								}
@@ -115,7 +116,7 @@ let display = {
 			}
 
 		});
-	
+
 
 		this.reset_btn.addEventListener("click", () => {
 			this.reset();
@@ -194,6 +195,17 @@ let display = {
 				}
 			});
 		}
+
+		this.special_shot_btn.addEventListener("click", () => { // allows the user to select a special shot
+			console.log("got here");
+
+
+
+			//Implement special shot?
+
+
+
+		});
 
 		this.flip_ship_btn.addEventListener("click", () => { // allows the user to orient their ships on the board
 			if(this.flip_ship_btn.innerText == "Turn Ship Horizontal")
@@ -288,6 +300,7 @@ let display = {
 						this.playGame.p1.shipcount = this.shipNum;
 						this.playGame.p2.shipcount = this.shipNum;
 						this.hideFlipBtn();
+						this.showSpecialShot();
 						this.hideRedBigGrid();
 						this.showBlueBigGrid();
 						this.drawBoard(this.blue_small_grid,this.playGame.p1.ship);
@@ -510,6 +523,14 @@ let display = {
 		this.blue_small_grid.style.display = "table";
 	},
 
+	hideSpecialShot: function() {
+		this.special_shot_btn.style.display = "none";
+	},
+
+	showSpecialShot: function() {
+		this.special_shot_btn.style.display = "block";
+	},
+
 	/**
 	 * hide all visual displays
 	 * @memberOf display
@@ -527,6 +548,7 @@ let display = {
 		this.hideGameMenu();
 		this.hideAIMenu();
 		this.hideContBtn();
+		this.hideSpecialShot();
 		GameConsole.hide();
 	},
 
