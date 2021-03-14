@@ -8,6 +8,7 @@ let player = function () {
 	this.shipcount = 0;
 	this.hitstowin = 0;
 	this.hits = 0;
+	this.specialShot = 2;
 
 	/**
 	 * take user input and react
@@ -162,3 +163,78 @@ let player = function () {
 		return checkifempty;
 	};
 }
+
+/**
+ * firing the ships with a special shot, return if hit or not
+ * @memberOf player
+ * @function specialFire
+ * @param {object} other - other player input
+ * @param {number} row -rows
+ * @param {number} col - columns
+ * @return {boolean} - hit
+ */
+this.specialFire=function(other, row, col){
+	let hit = false;
+
+	if(other.incoming(col, row)) {
+
+		this.hm[row][col] = 'X';
+		hit = true;
+		this.hits += 1;
+	}
+	if(other.incoming(col+1, row)) {
+
+		this.hm[row][col+1] = 'X';
+		hit = true;
+		this.hits += 1;
+	}
+	if(other.incoming(col-1, row)) {
+
+		this.hm[row][col-1] = 'X';
+		hit = true;
+		this.hits += 1;
+	}
+	if(other.incoming(col, row+1)) {
+
+		this.hm[row+1][col] = 'X';
+		hit = true;
+		this.hits += 1;
+	}
+	if(other.incoming(col, row-1)) {
+
+		this.hm[row-1][col] = 'X';
+		hit = true;
+		this.hits += 1;
+	}
+	if(other.incoming(col+1, row-1)) {
+
+		this.hm[row-1][col+1] = 'X';
+		hit = true;
+		this.hits += 1;
+	}
+	if(other.incoming(col+1, row+1)) {
+
+		this.hm[row+1][col+1] = 'X';
+		hit = true;
+		this.hits += 1;
+	}
+	if(other.incoming(col-1, row-1)) {
+
+		this.hm[row-1][col-1] = 'X';
+		hit = true;
+		this.hits += 1;
+	}
+	if(other.incoming(col-1, row+1)) {
+
+		this.hm[row+1][col-1] = 'X';
+		hit = true;
+		this.hits += 1;
+	}
+	else {
+		this.hm[row][col] = 'o';
+		hit = false;
+	}
+
+	this.specialShot--;
+	return (hit);
+};

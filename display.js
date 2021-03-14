@@ -85,13 +85,38 @@ let display = {
 										if(this.AImode_selectors[i].classList.contains("selected"))
 										{
 											if(i==0){
+
+
+
 												//play easy AI
+
+
+
+
 											}
 											else if(i==1){
+
+
+
+
 												//play medium AI
+
+
+
+
 											}
 											else if(i==2){
+
+
+
+
+
 												//play hard AI
+
+
+
+
+
 											}
 										}
 									}
@@ -196,14 +221,14 @@ let display = {
 			});
 		}
 
-		this.special_shot_btn.addEventListener("click", () => { // allows the user to select a special shot
-			console.log("got here");
+		this.special_shot_btn.addEventListener("click", () => {
+			GameConsole.write("Special shot clicked!", true);
 
-
-
-			//Implement special shot?
-
-
+			//***************************************
+			//
+			//Need special shot button implemented
+			//
+			//***************************************
 
 		});
 

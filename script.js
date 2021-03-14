@@ -139,6 +139,46 @@ let play = function(plr1,plr2,disp) {
 	};
 
 	/**
+	 * placeSpecial is called when a grid-box is clicked
+	 * @memberOf play
+	 * @function placeSpecial
+	 * @param {number} id - identification
+	 * @return {boolean} if placed return true, else turn false
+	*/
+	this.placeSpecial = function(id) {
+		let placedSpecial = false;
+		let row = id[0];
+		let col = id[1];
+		if(this.p1.specialShot !== 0 || this.p2.specialShot !== 0)
+		{
+			if(this.p1.specialShot !== 0)
+			{
+				if(this.p1.setdown(this.p1.shipcount,col,row,this.shipOrient) === 0)
+				{
+					//Somehow need to connect the display [Special Shot] button with the actual game.
+					//Where once the special shot button is clicked, the next time you click on a grid
+					//All bordering shots in a 3x3 are hit.
+
+					//Based on the project we were given, you can hit a location as many times as you want.
+					//Nothing prevents you from shooting a location you already shot.
+
+					//The best step to get this implemented, would be to make it spit out the location I chose.
+					//So if I click [Special Shot] then I choose A1, the game should say "special shot at A1"
+					//Which would be a step closer to incorporating the shots around the center
+				}
+			}
+			else
+			{
+				if(this.p2.setdown(this.p2.shipcount,col,row,this.shipOrient) === 0)
+				{
+
+				}
+			}
+		}
+		return placedSpecial;
+	};
+
+	/**
    	 * middle of the game
 		 * @memberOf play
 		 * @function midgame
