@@ -113,6 +113,115 @@
    return (hit);
  };
 
+/**
+ * medium mode firing
+ * @memberOf AI
+ * @function mediumFire
+ * @param {object} human - other player input
+ * @return {boolean} - hit
+ */
+  this.mediumFire=function(human){
+    let hit = false;  //did the ai hit something
+    let exit = false; //should I exit the search
+    let rownum=Math.floor(Math.random() * 10); //random int 0 to 9
+    let colnum=Math.floor(Math.random() * 10);
+
+    //set shot to a random point, that has not already been shot
+    do
+    {
+      rownum=Math.floor(Math.random() * 10); //random int 0 to 9
+      colnum=Math.floor(Math.random() * 10);
+    }while(this.hm[rownum][colnum] == 'X' && this.hm[rownum][colnum] == 'o');
+
+    //look to see if a ship has been found
+    for(let i = 0; i < 10 && exit == false; i++)
+    {
+      for(let j = 0; j < 10 && exit == false; j++)
+      {
+        if(hm[i][j] == 'X')
+        {
+          //check around the hit for an unshot spot
+          if(hm[i+1][j] == '-')
+          {
+            exit = true;
+            rownum = i + 1;
+            colnum = j;
+          }
+          else if(hm[i-1][j] == '-')
+          {
+            exit = true;
+            rownum = i - 1;
+            colnum = j;
+          }
+          else if(hm[i][j+1] == '-')
+          {
+            exit = true;
+            rownum = i;
+            colnum = j + 1;
+          }
+          else if(hm[i][j-1] == '-')
+          {
+            exit = true;
+            rownum = i;
+            colnum = j - 1;
+          }
+        }
+      }
+    }
+
+    if(human.incoming(colnum, rownum)) {
+      this.hm[rownum][colnum] = 'X';
+      hit = true;
+      this.hits += 1;
+    }
+    else {
+      this.hm[rownum][colnum] = 'o';
+      hit = false;
+    }
+
+    return (hit);
+  };
+
+/**
+ * hard mode firing
+ * @memberOf AI
+ * @function hardFire
+ * @param {object} human - other player input
+ * @return {boolean} - hit
+ */
+this.hardFire=function(human){
+  let hit = false;
+  let exit = false; //should I exit the search
+  let rownum=0; //random int 0 to 9
+  let colnum=0;
+
+  for(let i = 0; i < 10; i++)
+  {
+    for(let j = 0; j < 10; j++)
+    {
+      if(human.ship[i][j]==='S')
+      {
+        rownum=i;
+        colnum=j;
+      }
+    }
+  }
+
+  if(human.incoming(colnum, rownum)) {
+
+    this.hm[rownum][colnum] = 'X';
+    hit = true;
+    this.hits += 1;
+  }
+  else {
+    this.hm[rownum][colnum] = 'o';
+    hit = false;
+  }
+
+  return (hit);
+};
+
+
  /**
   * take user input and react
   * @memberOf AI
