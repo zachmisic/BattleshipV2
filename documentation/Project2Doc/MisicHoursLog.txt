@@ -1,0 +1,25 @@
+FULL HOUR COUNT: 
+
+3/3/2021 (Wednesday)
+8:00pm-10:00pm
+Total Hours: 2
+Description:
+Meeting, analysis of roles
+
+3/4/2021 (Thursday)
+11:00pm-1:00am
+Total Hours: 2
+Description:
+Learning Javascript basics
+
+3/10/2021 (Wednesday)
+8:00pm-11:00pm
+Total Hours: 3
+Description:
+Code base (post class split) analysis
+
+3/14/2021 (Sunday)
+4:00pm-11:00pm
+Total Hours: 7
+Description:
+Testing, documentation writing, communication, organization

@@ -35,6 +35,8 @@ let display = {
 
 	ai: 0, //determines ai used, 0 = 2player mode, 1 = easy ai, 2 = medium ai, 3 = hard ai
 
+	specialShot_enable: false, //lets the game know if the special shot is going to happen
+
 	/**
 	* Set event listeners and create grids.
 	* @memberOf display
@@ -89,14 +91,35 @@ let display = {
 											if(i==0){
 												//play easy AI
 												this.ai = 1;
+
+												this.hideGameMenu();
+												this.showBlueBigGrid();
+												this.showBlueSmallGrid();
+												this.showFlipBtn();
+												GameConsole.show();
+												GameConsole.write("Human, place your ships on the left grid. Your ship will extend down or rightward from the box you click.", true);
 											}
 											else if(i==1){
 												//play medium AI
 												this.ai = 2;
+
+												this.hideGameMenu();
+												this.showBlueBigGrid();
+												this.showBlueSmallGrid();
+												this.showFlipBtn();
+												GameConsole.show();
+												GameConsole.write("Human, place your ships on the left grid. Your ship will extend down or rightward from the box you click.", true);
 											}
 											else if(i==2){
 												//play hard AI
 												this.ai = 3;
+
+												this.hideGameMenu();
+												this.showBlueBigGrid();
+												this.showBlueSmallGrid();
+												this.showFlipBtn();
+												GameConsole.show();
+												GameConsole.write("Human, place your ships on the left grid. Your ship will extend down or rightward from the box you click.", true);
 											}
 										}
 									}
@@ -203,7 +226,7 @@ let display = {
 
 		this.special_shot_btn.addEventListener("click", () => {
 			GameConsole.write("Special shot clicked!", true);
-
+			specialShot_enable == true;
 			//***************************************
 			//
 			//Need special shot button implemented

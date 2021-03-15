@@ -1,0 +1,21 @@
+Estimated Person-Hours: 
+Group Members: 
+Average hours per group member: 
+
+-Hour Estimate Breakdown-
+Splitting Classes from File: 3
+AI File: 12
+Display File: 6
+Player File: 4
+Script File: 6
+Meetings: 10
+
+Total Hours: 38
+
+Justification:
+-Splitting one pre-existing javascript file into several separate class files
+-Adding the "special shot" addition
+-Adding easy, medium, and hard AI and difficulty settings
+-Making difficulty selection UI
+-Modifying Display for use in with AI
+-Allows for 2 hours per group member of meeting time
