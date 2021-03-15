@@ -1,0 +1,6 @@
+﻿Special Shot Documentation
+
+
+-activated by a button “special shot” at the bottom of the window
+-can only be fired once per player
+-fires a 3 by 3 shot to the board around the coordinate the player chooses
