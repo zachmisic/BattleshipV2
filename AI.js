@@ -257,4 +257,11 @@ this.hardFire=function(human){
 	  	return (this.hits == this.hitstowin);
   	};
 
+ 	/**
+	 * setup
+	 * @memberOf AI
+	 * @function setup
+	 */
+  this.setup= function(){};
+
 };

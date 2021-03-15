@@ -85,9 +85,15 @@ let GameConsole = {
  * @param {object} plr2 - player 2 object
  * @param {object} disp - display object
  */
-let play = function(plr1,plr2,disp) {
+let play = function(plr1,plr2,disp, ai) {
 	this.p1 = plr1;
-	this.p2 = plr2;
+	if(disp.ai == 0)
+	{
+		this.p2 = plr2;
+	}else
+	{
+		this.p2 = ai;
+	}
 	this.init = (n) => { this.p1.shipcount = n; this.p1.setup(); this.p2.shipcount = n; this.p2.setup(); };
 	this.display = disp;
 	this.shipsPlaced = false;
@@ -109,29 +115,63 @@ let play = function(plr1,plr2,disp) {
 		let col = id[1];
 		if(this.p1.shipcount !== 0 || this.p2.shipcount !== 0)
 		{
-			if(this.p1.shipcount !== 0)
+			if(disp.ai == 0)
 			{
-				console.log(row + " " + col);
-				if(this.p1.setdown(this.p1.shipcount,col,row,this.shipOrient) === 0)
+				if(this.p1.shipcount !== 0)
 				{
-					GameConsole.write("Blue placed a ship at a secret location.");
-					placed = true;
-					this.p1.shipcount--;
+					console.log(row + " " + col);
+					if(this.p1.setdown(this.p1.shipcount,col,row,this.shipOrient) === 0)
+					{
+						GameConsole.write("Blue placed a ship at a secret location.");
+						placed = true;
+						this.p1.shipcount--;
+					}
+					if(this.p1.shipcount === 0)// catches the last ship placement and switches boards
+					{
+						GameConsole.write("Red, place your ships on the left grid. Your ship will extend down or rightward from the box you click.", true);
+						this.display.hideBlueBigGrid();
+						this.display.showRedBigGrid();
+					}
 				}
-				if(this.p1.shipcount === 0)// catches the last ship placement and switches boards
+				else
 				{
-					GameConsole.write("Red, place your ships on the left grid. Your ship will extend down or rightward from the box you click.", true);
-					this.display.hideBlueBigGrid();
-					this.display.showRedBigGrid();
+					if(this.p2.setdown(this.p2.shipcount,col,row,this.shipOrient) === 0)
+					{
+						GameConsole.write("Red placed a ship at a secret location.");
+						placed = true;
+						this.p2.shipcount--;
+					}
 				}
 			}
 			else
 			{
-				if(this.p2.setdown(this.p2.shipcount,col,row,this.shipOrient) === 0)
+				if(this.p1.shipcount !== 0 || this.p2.shipcount !== 0)
 				{
-					GameConsole.write("Red placed a ship at a secret location.");
-					placed = true;
-					this.p2.shipcount--;
+					if(this.p1.shipcount !== 0)
+					{
+						console.log(row + " " + col);
+						if(this.p1.setdown(this.p1.shipcount,col,row,this.shipOrient) === 0)
+						{
+							GameConsole.write("Blue placed a ship at a secret location.");
+							placed = true;
+							this.p1.shipcount--;
+						}
+						if(this.p1.shipcount === 0)// catches the last ship placement and switches boards
+						{
+							GameConsole.write("Red, place your ships on the left grid. Your ship will extend down or rightward from the box you click.", true);
+							this.display.hideBlueBigGrid();
+							this.display.showRedBigGrid();
+						}
+					}
+					else
+					{
+						if(this.p2.placeShips(this.p2.shipcount))
+						{
+							GameConsole.write("Red placed a ship at a secret location.");
+							placed = true;
+							this.p2.shipcount--;
+						}
+					}
 				}
 			}
 		}
@@ -172,161 +212,6 @@ let play = function(plr1,plr2,disp) {
 				if(this.p2.setdown(this.p2.shipcount,col,row,this.shipOrient) === 0)
 				{
 
-				}
-			}
-		}
-		return placedSpecial;
-	};
-
-	/**
-   	 * middle of the game
-		 * @memberOf play
-		 * @function midgame
-  	 */
-	this.midgame=function(id){
-		let row = id[0];
-		let col = id[1];
-		let gover = false;
-		if(!(this.p1.gameover()) && !(this.p2.gameover()))
-		{
-			if(this.playerTurn)
-			{
-				GameConsole.write("Blue fired!");
-				if(this.p1.fire(this.p2, row, col))
-				{
-					this.display.blue_big_grid.querySelector("#e" + row + "" + col).classList.add("hit-ship");
-					if (this.p1.gameover())
-					{
-						this.endgame();
-					}
-				}
-				else
-				{
-					this.display.blue_big_grid.querySelector("#e" + row + "" + col).classList.add("miss-ship");
-				}
-			}
-			if(!this.playerTurn)
-			{
-				GameConsole.write("Red fired!");
-				if(this.p2.fire(this.p1, row, col))
-				{
-					display.red_big_grid.querySelector("#e" + row + "" + col).classList.add("hit-ship");
-					if (this.p2.gameover())
-					{
-						this.endgame();
-					}
-				}
-				else
-				{
-					this.display.red_big_grid.querySelector("#e" + row + "" + col).classList.add("miss-ship");
-				}
-			}
-		}
-	};
-
-	/**
-	 * end of game
-	 * @memberOf play
-	 * @function endgame
-	 */
-	this.endgame=function(){
-		if (this.p1.gameover() == true){
-			GameConsole.write("Game over. Blue wins!", true);
-		}else{
-			GameConsole.write("Game over. Red wins!", true)
-		}
-		setTimeout(() => { this.display.noClick = true; }, 3001);
-	}
-};
-
-
-/**
- * play function that drives the game
- * @class play
- * @param {object} plr1 -player 1 object
- * @param {object} ai - ai object
- * @param {object} disp - display object
- */
-let playAI = function(plr1, ai,disp) {
-	this.p1 = plr1;
-	this.p2 = ai;
-	this.init = (n) => { this.p1.shipcount = n; this.p1.setup(); this.p2.shipcount = n;};
-	this.display = disp;
-	this.shipsPlaced = false;
-	this.playerTurn = true;
-	this.shipNum = 0;
-	this.shipOrient = 'V';
-
-
-	/**
-	 * place ship is called when a grid-box is clicked and shipsPlaced is equal to false
-	 * @memberOf playAI
-	 * @function placeship
-	 * @param {number} id - identification
-	 * @return {boolean} if placed return true, else turn false
-	*/
-	this.placeShip = function(id) {
-		let placed = false;
-		let row = id[0];
-		let col = id[1];
-		if(this.p1.shipcount !== 0 || this.p2.shipcount !== 0)
-		{
-			if(this.p1.shipcount !== 0)
-			{
-				console.log(row + " " + col);
-				if(this.p1.setdown(this.p1.shipcount,col,row,this.shipOrient) === 0)
-				{
-					GameConsole.write("Blue placed a ship at a secret location.");
-					placed = true;
-					this.p1.shipcount--;
-				}
-				if(this.p1.shipcount === 0)// catches the last ship placement and switches boards
-				{
-					GameConsole.write("Red, place your ships on the left grid. Your ship will extend down or rightward from the box you click.", true);
-					this.display.hideBlueBigGrid();
-					this.display.showRedBigGrid();
-				}
-			}
-			else
-			{
-				if(this.p2.placeShips(this.p2.shipcount))
-				{
-					GameConsole.write("Red placed a ship at a secret location.");
-					placed = true;
-					this.p2.shipcount--;
-				}
-			}
-		}
-		return placed;
-	};
-
-	/**
-	 * placeSpecial is called when a grid-box is clicked
-	 * @memberOf play
-	 * @function placeSpecial
-	 * @param {number} id - identification
-	 * @return {boolean} if placed return true, else turn false
-	*/
-	this.placeSpecial = function(id) {
-		let placedSpecial = false;
-		let row = id[0];
-		let col = id[1];
-		if(this.p1.specialShot !== 0 || this.p2.specialShot !== 0)
-		{
-			if(this.p1.specialShot !== 0)
-			{
-				if(this.p1.setdown(this.p1.shipcount,col,row,this.shipOrient) === 0)
-				{
-					//Somehow need to connect the display [Special Shot] button with the actual game.
-					//Where once the special shot button is clicked, the next time you click on a grid
-					//All bordering shots in a 3x3 are hit.
-
-					//Based on the project we were given, you can hit a location as many times as you want.
-					//Nothing prevents you from shooting a location you already shot.
-
-					//The best step to get this implemented, would be to make it spit out the location I chose.
-					//So if I click [Special Shot] then I choose A1, the game should say "special shot at A1"
-					//Which would be a step closer to incorporating the shots around the center
 				}
 			}
 		}
@@ -393,6 +278,21 @@ let playAI = function(plr1, ai,disp) {
 						}
 					}
 				}
+				else if(display.ai == 0)
+				{
+					if(this.p2.fire(this.p1, row, col))
+					{
+						display.red_big_grid.querySelector("#e" + row + "" + col).classList.add("hit-ship");
+						if (this.p2.gameover())
+						{
+							this.endgame();
+						}
+					}
+					else
+					{
+						this.display.red_big_grid.querySelector("#e" + row + "" + col).classList.add("miss-ship");
+					}
+				}
 			}
 		}
 	};
@@ -412,14 +312,9 @@ let playAI = function(plr1, ai,disp) {
 	}
 };
 
+
 let player1 = new player;
 let player2 = new player;
 let ai = new AI;
-if(display.ai == 0)
-{
-	display.playGame = new play(player1,player2,display);
-}
-else
-{
-	display.playGame = new playAI(player1, ai, display)
-}
+
+display.playGame = new play(player1,player2,display, ai);
