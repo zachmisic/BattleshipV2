@@ -84,7 +84,11 @@
        }
      }
    }
-   return checkifempty;
+   
+   if(checkifempty == 0)
+    hitstowin += length;
+   
+    return checkifempty;
  };
 
 
@@ -195,14 +199,15 @@ this.hardFire=function(human){
   let rownum=0; //random int 0 to 9
   let colnum=0;
 
-  for(let i = 0; i < 10; i++)
+  for(let i = 0; i < 10 && exit == false; i++)
   {
-    for(let j = 0; j < 10; j++)
+    for(let j = 0; j < 10 && exit == false; j++)
     {
       if(human.ship[i][j]==='S')
       {
         rownum=i;
         colnum=j;
+        exit = true;
       }
     }
   }
@@ -225,12 +230,12 @@ this.hardFire=function(human){
  /**
   * take user input and react
   * @memberOf AI
-  * @function AIincoming
+  * @function incoming
   * @param {number} col - columns
   * @param {number} row - rows
   * @return {boolean} - return if hit, false otherwise
   */
- this.AIincoming = function (col, row){
+ this.incoming = function (col, row){
    if (this.ship[row][col] === 'S') {
        this.ship[row][col] = 'X';
        GameConsole.write("Hit at " + c_to_l[col] + (row+1) + "!", false);
@@ -242,4 +247,14 @@ this.hardFire=function(human){
      return (false);
    }
  };
+
+ 	/**
+	 * gameover
+	 * @memberOf AI
+	 * @function gameover
+	 */
+	  this.gameover= function(){
+	  	return (this.hits == this.hitstowin);
+  	};
+
 };

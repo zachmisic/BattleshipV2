@@ -33,6 +33,8 @@ let display = {
 	gameStart: true, // determines if the game has started or not
 	mainMenu: "", // varaible that represents the canvas for the menu background
 
+	ai: 0, //determines ai used, 0 = 2player mode, 1 = easy ai, 2 = medium ai, 3 = hard ai
+
 	/**
 	* Set event listeners and create grids.
 	* @memberOf display
@@ -85,38 +87,16 @@ let display = {
 										if(this.AImode_selectors[i].classList.contains("selected"))
 										{
 											if(i==0){
-
-
-
 												//play easy AI
-
-
-
-
+												this.ai = 1;
 											}
 											else if(i==1){
-
-
-
-
 												//play medium AI
-
-
-
-
+												this.ai = 2;
 											}
 											else if(i==2){
-
-
-
-
-
 												//play hard AI
-
-
-
-
-
+												this.ai = 3;
 											}
 										}
 									}
