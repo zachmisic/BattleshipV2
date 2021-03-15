@@ -1,0 +1,29 @@
+FULL HOUR COUNT: 8
+
+3/3/21 (Saturday)
+8:00pm - 9:00pm
+Total Hours: 1
+Description:
+Team meeting to discuss
+
+
+3/4/21 (Thursday)
+9:30-11:00
+Total Hours: 1.5
+Description:
+-Familiarizing with code
+-Learning parts of Javascript I'd forgotten
+
+3/6/21 (Saturday)
+1:00pm-5:00pm
+Total Hours: 4
+Description:
+-Implemented AI class
+-Edited HTML to include AI controls
+-Worked new functionality into display class
+
+3/13/21 (Saturday)
+9:00am-10:30am 
+Total Hours: 1.5
+Description:
+-Added some functionality, just made sure I'd done all I could

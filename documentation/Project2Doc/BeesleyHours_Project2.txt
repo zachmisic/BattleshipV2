@@ -1,0 +1,24 @@
+FULL HOUR COUNT: 8
+
+3/3/21 (Wednesday)
+Total Hours: 1
+Description:
+Talked as a group about the project and how to divide up the work, in person.
+
+3/4/21 (Thursday)
+Total Hours: 1
+Description:
+Broke up the script.js file, in order to isolate player.js and display.js
+
+3/13/21 (Saturday)
+Total Hours: 2
+Description:
+Implemented a special shot button within the program. Functionality not included.
+
+2/14/21 (Sunday)
+Total Hours: 4
+Description:
+Attempted to fix the functionality within the special shot button, by creating a special function in the
+player class that would fire an addiontal shot to all 8 directions from the center point.
+Added interfacing to the AI selection, so instead of reaching a white screen on selection the game plays as normal (without an AI).
+

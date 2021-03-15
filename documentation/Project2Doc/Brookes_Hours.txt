@@ -1,0 +1,25 @@
+﻿FULL HOUR COUNT: 3.5
+
+
+3/04/21 (Thursday)
+Total Hours: 1
+Description:
+-Group meeting
+
+
+3/05/21 (Friday)
+Total Hours: 0.5
+Description:
+-Group meeting with TA
+
+
+3/06/21 (Saturday)
+Total Hours: 1
+-Figuring out previous teams code
+-Figuring out what platform to run JavaScript on
+
+
+2/14/21 (Sunday)
+Total Hours: 1
+Description:
+-Documentation
